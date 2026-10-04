@@ -273,6 +273,30 @@ console.log('\napp manifest');
   assert('service worker exists', fs.existsSync(path.join(ROOT, 'sw.js')));
 }
 
+console.log('\nhand-written figures');
+{
+  // The FAQs and the about page state the counts in prose, which no build
+  // rewrites. If the export changes, these fail until the copy is re-read.
+  const { exams, meta } = JSON.parse(read('assets/data/exams.json'));
+  if (meta.total) {
+    const sizes = [...new Set(exams.map((e) => e.q).filter(Boolean))];
+    for (const page of ['teacher.html', 'about.html']) {
+      const text = visibleText(read(page));
+      assert(`${page} states the real form count (${meta.total})`, text.includes(`${meta.total} إصدارًا`));
+      if (meta.totalQuestions) {
+        assert(
+          `${page} states the real question total (${meta.totalQuestions})`,
+          text.includes(String(meta.totalQuestions)),
+        );
+      }
+    }
+    const about = visibleText(read('about.html'));
+    assert(`about.html names every form length (${sizes.join(', ')})`, sizes.every((q) => about.includes(`${q} سؤالًا`)));
+  } else {
+    assert('no form count is claimed before forms exist', !/\d+\s*إصدار/.test(visibleText(read('about.html'))));
+  }
+}
+
 console.log('\nllms.txt');
 {
   const llms = read('llms.txt');
@@ -284,7 +308,7 @@ console.log('\nllms.txt');
   assert('states his certification', llms.includes('المركز العربي للتدريب والتنمية البشرية'));
   assert(
     `form count matches the dataset (${meta.total})`,
-    meta.total ? llms.includes(`عدد النماذج: ${meta.total}`) : !/عدد النماذج:/.test(llms),
+    meta.total ? llms.includes(`عدد الإصدارات: ${meta.total}`) : !/عدد الإصدارات:/.test(llms),
   );
   assert(
     'question count matches the dataset',

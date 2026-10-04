@@ -1,14 +1,14 @@
 {
-  "sourceFile": "data/source/forms.json",
-  "sourceRecords": 0,
-  "published": 0,
+  "sourceFile": "data/source/forms_links.json",
+  "sourceRecords": 48,
+  "published": 48,
   "excluded": 0,
   "issues": [],
   "questions": {
-    "total": null,
+    "total": 2303,
     "perForm": null,
-    "typical": null,
-    "counted": 0
+    "typical": 48,
+    "counted": 48
   },
   "priority": {
     "label": "ابدأ بهذه",
@@ -16,6 +16,32 @@
     "flagged": 0,
     "unknown": []
   },
-  "outputBytes": 342,
-  "ranges": []
+  "outputBytes": 9928,
+  "ranges": [
+    {
+      "from": 1,
+      "to": 10,
+      "count": 10
+    },
+    {
+      "from": 11,
+      "to": 20,
+      "count": 10
+    },
+    {
+      "from": 21,
+      "to": 30,
+      "count": 10
+    },
+    {
+      "from": 31,
+      "to": 40,
+      "count": 10
+    },
+    {
+      "from": 41,
+      "to": 48,
+      "count": 8
+    }
+  ]
 }

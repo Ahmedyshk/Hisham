@@ -8,9 +8,9 @@
  *     site shows its "coming soon" state — so every check holds for zero
  *     records too.
  *  2. The Arabic search itself is exercised against a fixed fixture of 60
- *     forms titled the way the build titles an untitled form («النموذج الحادي
- *     عشر»). Search behaviour must not depend on what the export happens to
- *     contain this week.
+ *     forms titled the way the teacher titles his («الإصدار الحادي عشر»).
+ *     Search behaviour must not depend on what the export happens to contain
+ *     this week; a few lookups are repeated on the real data when it exists.
  */
 
 import fs from 'node:fs';
@@ -59,6 +59,15 @@ assert(
 );
 assert('every record carries a search key', exams.every((e) => typeof e.k === 'string' && e.k));
 
+if (exams.length) {
+  const real = (text) => searchExams(exams, parseQuery(text)).results;
+  assert('real data: titles drop the brand', exams.every((e) => !e.t.includes('دفرنة')));
+  assert('real data: numbers run 1..N without gaps', exams.every((e, i) => e.n === i + 1));
+  assert('real data: a number finds its form', real('11')[0]?.n === 11);
+  assert('real data: an ordinal finds its form', real('الحادي والعشرون')[0]?.n === 21);
+  assert('real data: every form declares its question count', exams.every((e) => Number.isInteger(e.q)));
+}
+
 /* ---------------------------------------------------------------- fixture */
 
 const UNITS = ['', 'الأول', 'الثاني', 'الثالث', 'الرابع', 'الخامس', 'السادس', 'السابع', 'الثامن', 'التاسع'];
@@ -84,7 +93,7 @@ const stem = (text) =>
 
 const fixture = Array.from({ length: 60 }, (_, i) => {
   const n = i + 1;
-  const t = `النموذج ${ordinal(n)}`;
+  const t = `الإصدار ${ordinal(n)}`;
   const norm = normalize(t);
   return { n, t, k: `${norm} ${stem(norm)}`, f: `fixture${String(n).padStart(20, '0')}`, q: 24 };
 });
@@ -93,7 +102,7 @@ const q = (text) => searchExams(fixture, parseQuery(text));
 
 console.log('\nexact and partial matching (fixture)');
 assert('exact title', q(fixture[0].t).results[0]?.n === 1);
-assert('word without the definite article', q('نموذج').results.length === fixture.length);
+assert('word without the definite article', q('اصدار').results.length === fixture.length);
 assert('multi-word AND', q('الحادي عشر').results[0]?.n === 11);
 assert('compound ordinal', q('الخامس والعشرون').results[0]?.n === 25);
 assert('an ordinal that no form carries', q('السبعون').results.length === 0);
@@ -106,16 +115,16 @@ assert('number prefix expands', q('1').results.some((e) => e.n > 9));
 assert('out-of-range number', q('9999').results.length === 0);
 
 console.log('\nforgiveness');
-assert('hamza folded', q('النموذج الاول').results[0]?.n === 1);
-assert('diacritics in the query', q('النَّموذجُ الأوَّل').results[0]?.n === 1);
-assert('punctuation is ignored', q('النموذج (الأول)').results[0]?.n === 1);
+assert('hamza folded', q('الاصدار الاول').results[0]?.n === 1);
+assert('diacritics in the query', q('الإصدارُ الأوَّل').results[0]?.n === 1);
+assert('punctuation is ignored', q('الإصدار (الأول)').results[0]?.n === 1);
 {
-  const r = q('النموذح الاول'); // one letter wrong
+  const r = q('الاصدر الاول'); // one letter dropped
   assert('single-character typo recovers', r.results.some((e) => e.n === 1) && r.fuzzy);
 }
 assert('ta-marbuta folded', normalize('القدرة') === normalize('القدره'));
 assert('alef-maqsura folded', normalize('مستوى') === normalize('مستوي'));
-assert('tatweel folded', normalize('النمـــوذج') === normalize('النموذج'));
+assert('tatweel folded', normalize('الإصـــدار') === normalize('الإصدار'));
 
 console.log('\nedge cases');
 assert('blank query returns everything', q('   ').results.length === fixture.length);
@@ -143,11 +152,11 @@ console.log('\nhighlighting maps back to the original title');
     JSON.stringify(ranges),
   );
 }
-assert('number queries do not highlight', highlightRanges('النموذج الحادي عشر', parseQuery('11')).length === 0);
+assert('number queries do not highlight', highlightRanges('الإصدار الحادي عشر', parseQuery('11')).length === 0);
 
 console.log('\nperformance');
 {
-  const queries = ['النموذج', 'ا', 'الحادي عشر', '11', 'zzz', 'النموذج الاول'];
+  const queries = ['الإصدار', 'ا', 'الحادي عشر', '11', 'zzz', 'الاصدار الاول'];
   const big = Array.from({ length: 400 }, (_, i) => ({ ...fixture[i % 60], n: i + 1 }));
   const start = performance.now();
   const runs = 300;

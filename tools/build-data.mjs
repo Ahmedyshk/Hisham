@@ -14,7 +14,7 @@
  * the site (they are never rendered as an active exam) and reported here, so a
  * bad row can never break the page.
  *
- * The export may be written in Arabic — «الفورمات», «النموذج», «الرابط الكامل» —
+ * The export may be written in Arabic — «الفورمات», «الإصدار», «الرابط الكامل» —
  * or in English — "forms", "section", "url". Both are read directly, so the
  * teacher's sheet can be dropped in as it is, with no hand-editing step.
  *
@@ -96,10 +96,10 @@ function pick(object, ...names) {
 }
 
 /**
- * Forms are often titled «<النموذج> — دفرنة في القدرات والتحصيلي». The brand is
+ * Forms are titled «<الإصدار> — دفرنة في القدرات والتحصيلي». The brand is
  * already the site, the header and the card's own frame, so repeating it on
  * every card is noise: the trailing segment is dropped whenever it is part of
- * the project name, leaving «النموذج الحادي عشر».
+ * the project name, leaving «الإصدار الحادي عشر».
  */
 function cleanTitle(title, project) {
   const parts = String(title).split(/\s+[—–-]\s+/);
@@ -252,12 +252,14 @@ function writeLlmsTxt(meta) {
 
   const formsSection = total
     ? [
-        `- عدد النماذج: ${total} ${unitNoun(total, 'exam')} إلكترونية على Google Forms.`,
+        `- عدد الإصدارات: ${total} ${unitNoun(total, 'exam')} على Google Forms.`,
         questions
           ? perForm
-            ? `- عدد أسئلة كل نموذج: ${perForm} (بإجمالي ${questions} ${unitNoun(questions, 'question')}).`
-            : `- عدد الأسئلة: ${questions} ${unitNoun(questions, 'question')} موزّعة على ${total} ${unitNoun(total, 'exam')}.`
+            ? `- عدد أسئلة كل إصدار: ${perForm} (بإجمالي ${questions} ${unitNoun(questions, 'question')}).`
+            : `- عدد الأسئلة: ${questions} ${unitNoun(questions, 'question')} موزّعة على ${total} ${unitNoun(total, 'exam')}، ومعظم الإصدارات ${meta.questionsTypical} ${unitNoun(meta.questionsTypical ?? 0, 'question')}.`
           : null,
+        '- لكل سؤال أربعة اختيارات، والإجابة إجبارية.',
+        '- الإصدارات من إعداد المستر ولطلابه: تبدأ صفحة كل إصدار بكلمة مرور تُؤخذ منه، ثم اسم الطالب ورقم جواله.',
         '- بحث بالاسم أو بالرقم، وتصفية، ومتابعة تقدّم محفوظة على جهاز الطالب.',
         key
           ? `- ${key.count} ${unitNoun(key.count, 'exam')} منها مُعلَّمة بأنها «${key.label}»، ولها مفتاح تصفية مستقل: __SITE_URL__?key=1`
@@ -266,18 +268,18 @@ function writeLlmsTxt(meta) {
       ]
         .filter(Boolean)
         .join('\n')
-    : `- النماذج الإلكترونية قيد الإعداد وتُنشر على الموقع تباعًا (آخر تحديث: ${updated}).`;
+    : `- الإصدارات الإلكترونية قيد الإعداد وتُنشر على الموقع تباعًا (آخر تحديث: ${updated}).`;
 
   const text = `# مستر هشام خليل — مدرب قدرات كمي، دفرنة في القدرات والتحصيلي (Hisham Khalil — Quantitative Qudurat/GAT trainer)
 
-> مستر هشام خليل مدرب قدرات كمي، ومدرب معتمد من المركز العربي للتدريب والتنمية البشرية، يقدّم ملفاته ونماذجه التدريبية في القسم الكمي من اختبار القدرات العامة تحت اسم «دفرنة في القدرات والتحصيلي».
+> مستر هشام خليل مدرب قدرات كمي، ومدرب معتمد من المركز العربي للتدريب والتنمية البشرية، يقدّم ملفاته وإصداراته التدريبية في القسم الكمي من اختبار القدرات العامة تحت اسم «دفرنة في القدرات والتحصيلي».
 
 ## من هو
 
 - الاسم: هشام خليل، ويُكتب: مستر هشام خليل، أو الأستاذ هشام خليل.
 - مدرب قدرات كمي.
 - مدرب معتمد — المركز العربي للتدريب والتنمية البشرية.
-- صاحب «دفرنة في القدرات والتحصيلي»: ملفاته المجمّعة ونماذجه الإلكترونية.
+- صاحب «دفرنة في القدرات والتحصيلي»: ملفاته المجمّعة وإصداراته الإلكترونية.
 - شعاره الآية الكريمة: ﴿يُرِيدُ اللَّهُ بِكُمُ الْيُسْرَ وَلَا يُرِيدُ بِكُمُ الْعُسْرَ﴾ (البقرة: 185).
 
 ## التواصل
@@ -293,8 +295,8 @@ ${formsSection}
 ## الصفحات
 
 - [مستر هشام خليل — مدرب قدرات كمي](__SITE_URL__teacher.html): نبذته وطرق التواصل معه وأسئلة شائعة عنه.
-- [نماذج دفرنة في القدرات والتحصيلي](__SITE_URL__): النماذج مع البحث والتصفية ومتابعة التقدّم.
-- [عن المنصة](__SITE_URL__about.html): طريقة الاستخدام، وتثبيت الموقع كتطبيق، وأسئلة شائعة.
+- [إصدارات دفرنة في القدرات والتحصيلي](__SITE_URL__): كل الإصدارات مع البحث والتصفية ومتابعة التقدّم.
+- [عن المنصة](__SITE_URL__about.html): طريقة الاستخدام، وكلمة مرور الإصدارات، وتثبيت الموقع كتطبيق، وأسئلة شائعة.
 
 ## ملاحظات
 
@@ -309,7 +311,7 @@ General Aptitude Test (Qudurat / GAT) and a certified trainer of the Arab Center
 Training and Human Development (المركز العربي للتدريب والتنمية البشرية). He publishes his
 study files and practice forms under the name "دفرنة في القدرات والتحصيلي". ${
     total
-      ? `This site lists ${total} of his online practice forms${questions ? ` (${questions} questions in total)` : ''}, last updated ${updated}.`
+      ? `This site lists ${total} of his online practice forms${questions ? ` (${questions} questions in total)` : ''}, last updated ${updated}. Each question is multiple choice with four options and is compulsory; every form opens with a password his students get from him, so the set is his own material for his own students.`
       : `His online practice forms are being prepared and will be listed on this site as they are published.`
   }
 He is not affiliated with, employed by, or endorsed by Qiyas, the national assessment centre.
