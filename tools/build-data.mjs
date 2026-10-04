@@ -184,7 +184,7 @@ function fillMarker(html, attr, value) {
  * student sees. assets/js/app.js makes the same choice again at runtime.
  */
 function stampDataState(html, mode) {
-  return html.replace(/<([a-z]+)([^>]*data-when="(ready|empty)"[^>]*)>/g, (_m, tag, attrs, when) => {
+  return html.replace(/<([a-z]+)\b([^>]*\bdata-when="(ready|empty)"[^>]*)>/g, (_m, tag, attrs, when) => {
     const clean = attrs.replace(/\s+hidden(?=[\s>]|$)/g, '');
     return `<${tag}${clean}${when === mode ? '' : ' hidden'}>`;
   });

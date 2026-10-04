@@ -440,7 +440,7 @@
               أو باسمه وابدأ فورًا، ويطلب كل إصدار كلمة مرور تأخذها من المستر.
             </p>
 
-            <div class="hero__soon" data-when="empty">
+            <div class="hero__soon" data-when="empty" hidden>
               <p class="soon-badge">الإصدارات الإلكترونية تُضاف قريبًا</p>
               <div class="hero__cta">
                 <a
@@ -458,7 +458,7 @@
               </div>
             </div>
 
-            <form class="search" id="searchForm" role="search" autocomplete="off" data-when="ready" hidden>
+            <form class="search" id="searchForm" role="search" autocomplete="off" data-when="ready">
               <svg class="icon search__icon" aria-hidden="true"><use href="#i-search" /></svg>
               <label class="sr-only" for="searchInput">ابحث في الإصدارات</label>
               <input
@@ -479,13 +479,13 @@
               </button>
             </form>
 
-            <p class="hero__hint" id="searchHint" data-when="ready" hidden>
+            <p class="hero__hint" id="searchHint" data-when="ready">
               مثال: الحادي عشر، أو <span class="tnum">11</span>
               <span class="hero__hint-sep" aria-hidden="true">·</span>
               <span class="hero__hint-key">اضغط <kbd>/</kbd> للانتقال إلى البحث</span>
             </p>
 
-            <ul class="hero__stats" id="heroStats" data-when="ready" hidden>
+            <ul class="hero__stats" id="heroStats" data-when="ready">
               <li>
                 <b class="tnum" data-stat="total">48</b>
                 <span data-unit="exam">إصدارًا</span>
@@ -524,7 +524,7 @@
       </section>
 
       <!-- ======================== Quick access ======================== -->
-      <section class="quick container" id="quickAccess" aria-labelledby="quick-title" data-when="ready" hidden>
+      <section class="quick container" id="quickAccess" aria-labelledby="quick-title" data-when="ready">
         <h2 class="sr-only" id="quick-title">وصول سريع</h2>
 
         <div class="quick__grid">
@@ -629,11 +629,11 @@
           <div class="toolbar">
             <div class="toolbar__heading">
               <h2 id="exams-title">الإصدارات</h2>
-              <p class="result-count" id="resultCount" data-when="ready" hidden><b>—</b></p>
+              <p class="result-count" id="resultCount" data-when="ready"><b>—</b></p>
               <p class="sr-only" id="resultCountLive" role="status" aria-live="polite"></p>
             </div>
 
-            <div class="toolbar__controls toolbar__controls--inline" id="controlsHome" data-when="ready" hidden>
+            <div class="toolbar__controls toolbar__controls--inline" id="controlsHome" data-when="ready">
               <div id="filterControls">
                 <div class="field">
                   <span class="field__label" id="statusLabel">الحالة</span>
@@ -666,7 +666,7 @@
               </div>
             </div>
 
-            <button type="button" class="btn btn--secondary filter-trigger" id="filterTrigger" data-when="ready" hidden>
+            <button type="button" class="btn btn--secondary filter-trigger" id="filterTrigger" data-when="ready">
               <svg class="icon" aria-hidden="true"><use href="#i-sliders" /></svg>
               <span>تصفية</span>
               <span class="filter-trigger__badge" id="filterBadge" hidden>0</span>
@@ -682,7 +682,7 @@
             <p class="keybar__hint" id="keyHint"></p>
           </div>
 
-          <nav class="ranges" aria-label="الانتقال إلى مجموعة من الإصدارات" data-when="ready" hidden>
+          <nav class="ranges" aria-label="الانتقال إلى مجموعة من الإصدارات" data-when="ready">
             <div class="chips" id="rangeChips"></div>
           </nav>
 
@@ -692,7 +692,7 @@
             <button type="button" class="btn btn--ghost btn--sm" id="resetAll">مسح الكل</button>
           </div>
 
-          <div class="grid" id="examGrid" aria-busy="true" data-when="ready" hidden>
+          <div class="grid" id="examGrid" aria-busy="true" data-when="ready">
             <div class="skeleton"></div>
             <div class="skeleton"></div>
             <div class="skeleton"></div>
@@ -700,7 +700,7 @@
           </div>
 
           <!-- Until the first forms are published -->
-          <div class="state state--soon" id="soonState" data-when="empty">
+          <div class="state state--soon" id="soonState" data-when="empty" hidden>
             <img
               class="state__emblem"
               src="assets/img/mark-360.webp"
