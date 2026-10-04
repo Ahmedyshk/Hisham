@@ -1,0 +1,3048 @@
+/* ==========================================================================
+   Components
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Buttons
+   -------------------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  min-height: 42px;
+  padding: 0 var(--sp-4);
+  border: 1px solid transparent;
+  border-radius: var(--r-md);
+  font-size: var(--fs-md);
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur-fast) var(--ease);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn .icon {
+  flex: none;
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), var(--shadow-accent);
+}
+
+.btn--primary:hover {
+  background: var(--accent-hover);
+}
+
+.btn--primary:active {
+  background: var(--accent-active);
+}
+
+/* Tinted: the same navy action, at rest a wash rather than a solid block.
+   Used where the action repeats many times on one screen (every exam card). */
+.btn--tint {
+  background: var(--accent-soft);
+  color: var(--accent-tint-ink);
+}
+
+.btn--tint:hover,
+.btn--tint:focus-visible {
+  background: var(--accent);
+  color: var(--accent-ink);
+  box-shadow: var(--shadow-accent);
+}
+
+.btn--tint:active {
+  background: var(--accent-active);
+  color: var(--accent-ink);
+}
+
+.btn--secondary {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--border-strong);
+}
+
+.btn--secondary:hover {
+  background: var(--surface-2);
+  border-color: var(--ink-3);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--ink-2);
+}
+
+.btn--ghost:hover {
+  background: var(--surface-sunken);
+  color: var(--ink);
+}
+
+.btn--sm {
+  min-height: 36px;
+  padding: 0 var(--sp-3);
+  font-size: var(--fs-sm);
+}
+
+.btn--block {
+  width: 100%;
+}
+
+/* Icon-only button — always keeps a 40px+ hit area. */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  border: 1px solid transparent;
+  border-radius: var(--r-md);
+  color: var(--ink-2);
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+
+.icon-btn:hover {
+  background: var(--surface-sunken);
+  color: var(--ink);
+}
+
+.icon-btn--bordered {
+  border-color: var(--border);
+  background: var(--surface);
+}
+
+.icon-btn--bordered:hover {
+  border-color: var(--border-strong);
+}
+
+.icon {
+  width: 1.15em;
+  height: 1.15em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.icon--lg {
+  width: 20px;
+  height: 20px;
+}
+
+/* --------------------------------------------------------------------------
+   Header
+   -------------------------------------------------------------------------- */
+
+.site-header {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 60;
+  background: var(--header-bg);
+  backdrop-filter: saturate(1.6) blur(14px);
+  -webkit-backdrop-filter: saturate(1.6) blur(14px);
+  border-block-end: 1px solid var(--border);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  min-height: var(--header-h);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  text-decoration: none;
+  flex: none;
+  border-radius: var(--r-md);
+}
+
+/* The emblem carries its own rings and paper fill, so it sits on the header
+   as it is — a soft drop shadow lifts it off the translucent bar. */
+.brand__mark {
+  width: 52px;
+  height: 52px;
+  flex: none;
+  filter: drop-shadow(0 4px 8px rgba(26, 48, 73, 0.22));
+  transition: transform var(--dur-slow) var(--ease);
+}
+
+.brand:hover .brand__mark {
+  transform: rotate(-6deg) scale(1.04);
+}
+
+.brand__text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.brand__name {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.brand__sub {
+  font-size: var(--fs-xs);
+  line-height: 1.2;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+  margin-inline-start: auto;
+}
+
+.nav a {
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--r-md);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--ink-2);
+  text-decoration: none;
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.nav a:hover {
+  background: var(--surface-sunken);
+  color: var(--ink);
+}
+
+.nav a[aria-current="page"] {
+  color: var(--ink);
+  font-weight: 600;
+  background: var(--surface-sunken);
+}
+
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+  flex: none;
+}
+
+.nav-toggle {
+  display: none;
+}
+
+@media (max-width: 719px) {
+  .brand__sub {
+    display: none;
+  }
+
+  .brand__mark {
+    width: 42px;
+    height: 42px;
+  }
+
+  .nav {
+    position: absolute;
+    inset-block-start: calc(var(--header-h) - 2px);
+    inset-inline-end: var(--gutter);
+    inset-inline-start: var(--gutter);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    padding: var(--sp-2);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-3);
+  }
+
+  /* Collapsed by default on small screens; `.nav--open` reveals the panel.
+     Visibility is class-driven rather than [hidden]-driven so the desktop
+     layout never has to fight the global [hidden] rule. */
+  .nav {
+    display: none;
+  }
+
+  .nav--open {
+    display: flex;
+  }
+
+  .nav a {
+    padding: var(--sp-3);
+    font-size: var(--fs-md);
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .header__actions {
+    margin-inline-start: auto;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Hero
+   Phones: the seal sits above a centred column. From 900px the hero splits —
+   copy and search on the reading side (right), the seal on the left.
+   -------------------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  background-image: var(--hero-wash);
+  border-block-end: 1px solid var(--border);
+  overflow: hidden;
+}
+
+/* A faint dot grid, faded out towards the reading side so it never sits
+   behind body copy. */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: radial-gradient(var(--dots) 1.1px, transparent 1.4px);
+  background-size: 22px 22px;
+  -webkit-mask-image: radial-gradient(65% 85% at 18% 45%, #000, transparent 72%);
+  mask-image: radial-gradient(65% 85% at 18% 45%, #000, transparent 72%);
+  pointer-events: none;
+}
+
+.hero__inner {
+  display: grid;
+  justify-items: center;
+  gap: var(--sp-6);
+  /* The bottom padding leaves room for the quick-access tiles, which overlap
+     the hero's lower edge. */
+  padding-block: clamp(var(--sp-6), 4vw, var(--sp-10))
+    calc(clamp(var(--sp-8), 5vw, var(--sp-12)) + var(--sp-8));
+  text-align: center;
+}
+
+.hero__copy {
+  width: 100%;
+  max-width: 640px;
+  min-width: 0;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-1) var(--sp-3);
+  margin-block-end: var(--sp-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-full);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  color: var(--ink-2);
+  box-shadow: var(--shadow-1);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-soft);
+  flex: none;
+}
+
+.hero__title {
+  margin-block-end: var(--sp-4);
+  font-size: var(--fs-hero);
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+}
+
+/* A gold marker stroke behind the key phrase rather than an underline, which
+   would collide with Arabic descenders. */
+.hero__title em {
+  font-style: normal;
+  color: var(--accent);
+  background-image: linear-gradient(var(--highlight), var(--highlight));
+  background-repeat: no-repeat;
+  background-size: 100% 0.3em;
+  background-position: 0 86%;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  padding-inline: 0.06em;
+}
+
+:root[data-theme="dark"] .hero__title em {
+  /* The accent gold is the action colour here; display type takes the paler
+     tint so it still separates from the gold wash behind it. */
+  color: var(--gold-ink);
+}
+
+.hero__lead {
+  max-width: 52ch;
+  text-wrap: balance;
+  margin-inline: auto;
+  margin-block-end: var(--sp-6);
+  font-size: var(--fs-lg);
+  line-height: var(--lh-snug);
+  color: var(--ink-2);
+}
+
+/* ---- Seal (the logo) ------------------------------------------------------- */
+
+.hero__brand {
+  position: relative;
+  order: -1;
+  margin: 0;
+  padding-block-end: var(--sp-4);
+}
+
+.seal {
+  position: relative;
+  width: 116px;
+  aspect-ratio: 1;
+  max-width: 100%;
+  padding: 5px;
+  border-radius: 50%;
+  background: var(--seal-rim);
+  box-shadow: var(--seal-shadow);
+}
+
+.seal__img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 1px var(--seal-line);
+}
+
+/* Orbit rings: one dashed and slowly turning, one solid hairline. Purely
+   decorative, and frozen by the reduced-motion rule in base.css. */
+.seal::before,
+.seal::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.seal::before {
+  inset: -12px;
+  border: 1.5px dashed var(--seal-line);
+  animation: orbit 90s linear infinite;
+}
+
+.seal::after {
+  inset: -24px;
+  border: 1px solid var(--seal-line);
+  opacity: 0.45;
+}
+
+@keyframes orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.seal__caption {
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline: -100%;
+  margin-inline: auto;
+  width: max-content;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: 3px var(--sp-3);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-full);
+  box-shadow: var(--shadow-2);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.seal__caption span {
+  font-weight: 500;
+  color: var(--ink-3);
+}
+
+@media (min-width: 560px) and (max-width: 899px) {
+  .seal {
+    width: 148px;
+    padding: 7px;
+  }
+
+  .seal::before {
+    inset: -16px;
+  }
+
+  .seal::after {
+    inset: -32px;
+  }
+}
+
+@media (min-width: 900px) {
+  .hero__inner {
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    align-items: center;
+    justify-items: stretch;
+    gap: clamp(var(--sp-8), 5vw, var(--sp-16));
+    padding-block: clamp(var(--sp-10), 5vw, var(--sp-16))
+      calc(clamp(var(--sp-10), 5vw, var(--sp-16)) + var(--sp-8));
+    text-align: start;
+  }
+
+  .hero__copy {
+    max-width: none;
+  }
+
+  .hero__lead {
+    margin-inline: 0;
+  }
+
+  .hero__brand {
+    order: 0;
+    justify-self: center;
+    padding-block-end: var(--sp-6);
+  }
+
+  .seal {
+    width: clamp(260px, 25vw, 330px);
+    padding: 10px;
+  }
+
+  .seal::before {
+    inset: -22px;
+  }
+
+  .seal::after {
+    inset: -44px;
+  }
+
+  .seal__caption {
+    padding: var(--sp-2) var(--sp-4);
+    font-size: var(--fs-sm);
+  }
+}
+
+/* ---- Search --------------------------------------------------------------- */
+
+.search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-3), var(--shadow-1);
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+
+.search:focus-within {
+  border-color: var(--focus);
+  box-shadow: var(--shadow-3), 0 0 0 4px var(--focus-halo);
+}
+
+.search__icon {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin-inline-start: var(--sp-3);
+  color: var(--ink-3);
+}
+
+.search__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 46px;
+  border: 0;
+  background: transparent;
+  font-size: var(--fs-lg);
+  outline: none;
+}
+
+.search__input::placeholder {
+  color: var(--ink-3);
+  font-size: var(--fs-md);
+}
+
+/* The clear button sits inside the field; it is only shown when there is text. */
+.search__clear {
+  flex: none;
+}
+
+.search__clear[hidden] {
+  display: none;
+}
+
+.search__submit {
+  flex: none;
+  min-height: 46px;
+  padding-inline: var(--sp-5);
+  border-radius: 12px;
+}
+
+.hero__hint {
+  margin-block-start: var(--sp-3);
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+}
+
+kbd {
+  display: inline-block;
+  min-width: 20px;
+  padding: 1px 6px;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-block-end-width: 2px;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.9em;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+/* ---- Hero stats ----------------------------------------------------------- */
+
+.hero__stats {
+  display: grid;
+  /* Four figures: two per row on a phone, one row from the tablet up. */
+  grid-template-columns: repeat(2, auto);
+  justify-content: center;
+  row-gap: var(--sp-3);
+  margin-block-start: var(--sp-6);
+}
+
+@media (min-width: 620px) {
+  .hero__stats {
+    grid-template-columns: repeat(4, auto);
+    row-gap: 0;
+  }
+}
+
+.hero__stats li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-inline: clamp(var(--sp-3), 3vw, var(--sp-6));
+  font-size: var(--fs-xs);
+  line-height: 1.4;
+  color: var(--ink-3);
+}
+
+.hero__stats li + li {
+  border-inline-start: 1px solid var(--border-strong);
+}
+
+/* While the figures sit two per row, the one that opens a row must not carry
+   a divider — it would hang off the left edge with nothing beside it. */
+@media (max-width: 619px) {
+  .hero__stats li:nth-child(odd) {
+    border-inline-start: 0;
+  }
+}
+
+/* The shortlist is the figure worth reading twice. */
+.hero__stats-key b {
+  color: var(--accent-tint-ink);
+}
+
+.hero__stats b {
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+/* The date is a phrase, not a figure — keep it from dwarfing the counts. */
+.hero__stats li:last-child b {
+  font-size: var(--fs-lg);
+  line-height: 1.75;
+}
+
+@media (min-width: 900px) {
+  .hero__stats {
+    justify-content: start;
+    margin-block-start: var(--sp-8);
+  }
+
+  .hero__stats li:first-child {
+    padding-inline-start: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Quick access
+   -------------------------------------------------------------------------- */
+
+/* Pulled up over the hero's bottom edge so the tiles read as the first
+   thing to do after searching, not as a separate band. */
+.quick {
+  position: relative;
+  z-index: 2;
+  margin-block-start: calc(-1 * var(--sp-10));
+}
+
+.quick__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sp-3);
+}
+
+/* Four tiles: two rows of two, or one row of four. Never 3 + 1. */
+@media (min-width: 1000px) {
+  .quick__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.tile {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  min-height: 76px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-2);
+  text-align: start;
+  text-decoration: none;
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+.tile:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-3);
+  transform: translateY(-2px);
+}
+
+.tile:active {
+  transform: translateY(0);
+}
+
+.tile__icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  flex: none;
+  border-radius: 12px;
+  background: var(--surface-sunken);
+  color: var(--ink-2);
+}
+
+/* "Resume" is the one tile that knows where you are — it gets the strong
+   navy surface. */
+.tile--accent {
+  background: var(--strong-bg);
+  border-color: transparent;
+}
+
+.tile--accent:hover {
+  border-color: transparent;
+}
+
+.tile--accent .tile__label {
+  color: var(--strong-ink);
+}
+
+.tile--accent .tile__meta {
+  color: var(--strong-ink-2);
+}
+
+.tile--accent .tile__icon {
+  background: var(--strong-icon-bg);
+  color: var(--strong-icon);
+}
+
+.tile--gold .tile__icon {
+  background: var(--gold-soft);
+  color: var(--gold-ink);
+}
+
+/* ---- The shortlist tile ----------------------------------------------------
+   The "most repeated" set is the site's headline path, so it takes a row of
+   its own above the four utility tiles rather than becoming a lopsided fifth
+   column. It is a filter, not a link: pressed state mirrors the toggle in the
+   toolbar, and the two stay in sync.
+   -------------------------------------------------------------------------- */
+
+.tile--key {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, var(--accent-soft), transparent 65%), var(--surface);
+  border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
+}
+
+.tile--key[hidden] {
+  display: none;
+}
+
+.tile--key .tile__icon {
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  color: var(--accent-tint-ink);
+}
+
+.tile--key .tile__label {
+  color: var(--accent-tint-ink);
+}
+
+/* The explanation is the point of this tile; let it wrap instead of clipping. */
+.tile--key .tile__meta {
+  white-space: normal;
+}
+
+.tile--key[aria-pressed="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: var(--shadow-accent), var(--shadow-2);
+}
+
+.tile--key[aria-pressed="true"] .tile__label,
+.tile--key[aria-pressed="true"] .tile__meta {
+  color: var(--accent-ink);
+}
+
+.tile--key[aria-pressed="true"] .tile__icon {
+  background: rgba(255, 255, 255, 0.16);
+  color: var(--accent-ink);
+}
+
+/* "اعرضها" / "معروضة الآن" — says what the press will do, then what it did. */
+.tile__state {
+  flex: none;
+  margin-inline-start: auto;
+  padding: 4px 12px;
+  border: 1px solid color-mix(in srgb, var(--accent) 34%, var(--border));
+  border-radius: var(--r-full);
+  background: var(--surface);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--accent-tint-ink);
+  white-space: nowrap;
+}
+
+.tile--key[aria-pressed="true"] .tile__state {
+  background: var(--accent-ink);
+  border-color: transparent;
+  color: var(--accent);
+}
+
+.tile__body {
+  min-width: 0;
+}
+
+/* Resume and random open a form in a new tab; say so before the click. */
+.tile__go {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin-inline-start: auto;
+  color: var(--ink-3);
+  opacity: 0.7;
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.tile:hover .tile__go {
+  opacity: 1;
+}
+
+.tile--accent .tile__go {
+  color: var(--strong-ink-2);
+}
+
+/* A link tile has no href until the data has loaded. */
+a.tile:not([href]) {
+  pointer-events: none;
+}
+
+.tile__label {
+  display: block;
+  font-size: var(--fs-md);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tile__meta {
+  display: block;
+  font-size: var(--fs-xs);
+  line-height: 1.4;
+  color: var(--ink-3);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---- Progress ------------------------------------------------------------- */
+
+.progress {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--sp-3) var(--sp-4);
+  margin-block-start: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--surface-2);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--r-lg);
+}
+
+/* Two tracks — everything, then the shortlist. They share one grid so the
+   bars line up under each other however long the two labels turn out to be;
+   `display: contents` lets each track hand its three parts to that grid. */
+.progress__tracks {
+  flex: 1 1 260px;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: auto minmax(60px, 1fr) auto;
+  align-items: center;
+  gap: var(--sp-2) var(--sp-3);
+}
+
+.progress__track {
+  display: contents;
+}
+
+.progress__track[hidden] {
+  display: none;
+}
+
+.progress__bar {
+  flex: 1 1 auto;
+  height: 8px;
+  min-width: 60px;
+  background: var(--surface-sunken);
+  border-radius: var(--r-full);
+  overflow: hidden;
+}
+
+.progress__fill {
+  /* Its parent is not a flex container, so without this the span stays inline
+     and neither width nor height apply — the bar would never fill. */
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--gold), var(--gold-400));
+  transition: width var(--dur-slow) var(--ease);
+}
+
+.progress__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.progress__pct {
+  min-width: 3.5ch;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--gold-ink);
+  text-align: center;
+}
+
+/* The shortlist track is the accent, matching its badge and its toggle; the
+   gold on the track above keeps meaning "done". */
+.progress__fill--key {
+  background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+}
+
+.progress__track--key .progress__label {
+  color: var(--accent-tint-ink);
+}
+
+.progress__pct--key {
+  color: var(--accent-tint-ink);
+}
+
+.progress__reset {
+  flex: none;
+}
+
+/* --------------------------------------------------------------------------
+   Toolbar + filters
+   -------------------------------------------------------------------------- */
+
+.toolbar {
+  position: sticky;
+  inset-block-start: var(--header-h);
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  padding-block: var(--sp-3);
+  margin-block-end: var(--sp-4);
+  background: var(--bg);
+  border-block-end: 1px solid var(--border);
+}
+
+.toolbar__heading {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-2);
+  min-width: 0;
+}
+
+.toolbar__heading h2 {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-xl);
+}
+
+.toolbar__heading h2::before {
+  content: "";
+  width: 4px;
+  height: 0.95em;
+  border-radius: 2px;
+  background: linear-gradient(var(--gold), var(--accent));
+}
+
+.result-count {
+  font-size: var(--fs-sm);
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.result-count b {
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.toolbar__controls {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-inline-start: auto;
+  flex-wrap: wrap;
+}
+
+.filter-trigger {
+  display: none;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.field__label {
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.select {
+  appearance: none;
+  min-height: 38px;
+  padding-inline: var(--sp-3) calc(var(--sp-3) + 18px);
+  background-color: var(--surface);
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: calc(var(--sp-3) + 5px) 50%, calc(var(--sp-3)) 50%;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-md);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color var(--dur) var(--ease);
+}
+
+.select:hover {
+  border-color: var(--ink-3);
+}
+
+/* Segmented control (status) */
+.segmented {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  background: var(--surface-sunken);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+}
+
+.segmented button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 0 var(--sp-3);
+  border-radius: 7px;
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--ink-2);
+  white-space: nowrap;
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+.segmented button:hover {
+  color: var(--ink);
+}
+
+.segmented button[aria-pressed="true"] {
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 600;
+  box-shadow: var(--shadow-1);
+}
+
+/* Reserved width (three digits) so filling the counts never shifts the bar. */
+.segmented__count {
+  display: inline-block;
+  min-width: 2.6em;
+  padding: 0 0.45em;
+  border-radius: var(--r-full);
+  background: var(--surface);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--ink-3);
+  text-align: center;
+}
+
+.segmented button[aria-pressed="true"] .segmented__count {
+  background: var(--surface-sunken);
+  color: var(--ink);
+}
+
+/* ---- Range chips ----------------------------------------------------------- */
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  min-height: 34px;
+  padding: 0 var(--sp-3);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-full);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--ink-2);
+  white-space: nowrap;
+  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.chip:hover {
+  border-color: var(--border-strong);
+  color: var(--ink);
+}
+
+.chip[aria-pressed="true"] {
+  background: var(--navy-700);
+  border-color: var(--navy-700);
+  color: #fff;
+}
+
+:root[data-theme="dark"] .chip[aria-pressed="true"] {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--navy-900);
+}
+
+.chip__count {
+  font-size: var(--fs-xs);
+  opacity: 0.7;
+  font-variant-numeric: tabular-nums;
+}
+
+/* A range that holds none of the shortlist stays clickable but reads as empty,
+   so "0" looks deliberate rather than broken. */
+.chip--empty {
+  opacity: 0.45;
+}
+
+.chip--empty[aria-pressed="true"] {
+  opacity: 1;
+}
+
+/* ---- The shortlist toggle ---------------------------------------------------
+   An axis of its own, not a status: it combines with the status tabs, the
+   range chips and the search box. It sits outside the mobile filter sheet on
+   purpose — it is the one filter worth a tap from the top of the list.
+   -------------------------------------------------------------------------- */
+
+.keybar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-3);
+  margin-block-end: var(--sp-3);
+}
+
+.keybar[hidden] {
+  display: none;
+}
+
+.keybar__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  min-height: 38px;
+  padding: 0 var(--sp-4);
+  background: var(--accent-soft);
+  border: 1px solid color-mix(in srgb, var(--accent) 34%, transparent);
+  border-radius: var(--r-full);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--accent-tint-ink);
+  white-space: nowrap;
+  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+
+.keybar__toggle:hover {
+  border-color: var(--accent);
+}
+
+.keybar__toggle[aria-pressed="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+  box-shadow: var(--shadow-accent);
+}
+
+.keybar__count {
+  padding: 1px 8px;
+  border-radius: var(--r-full);
+  background: var(--surface);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.keybar__toggle[aria-pressed="true"] .keybar__count {
+  background: rgba(255, 255, 255, 0.22);
+  color: var(--accent-ink);
+}
+
+.keybar__hint {
+  flex: 1 1 220px;
+  min-width: 0;
+  font-size: var(--fs-xs);
+  line-height: 1.5;
+  color: var(--ink-3);
+}
+
+/* ---- Active filter summary -------------------------------------------------- */
+
+.active-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-block-end: var(--sp-4);
+}
+
+.active-filters[hidden] {
+  display: none;
+}
+
+.active-filters__label {
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  min-height: 30px;
+  padding-inline: var(--sp-3) var(--sp-2);
+  background: var(--accent-soft);
+  border: 1px solid transparent;
+  border-radius: var(--r-full);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.tag__remove {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  color: inherit;
+  opacity: 0.75;
+  transition: opacity var(--dur) var(--ease), background-color var(--dur) var(--ease);
+}
+
+.tag__remove:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+/* --------------------------------------------------------------------------
+   Exam cards
+   -------------------------------------------------------------------------- */
+
+.grid {
+  display: grid;
+  /* 220px is chosen so the column count steps 1 / 2 / 3 / 4 at phone / large
+     phone / tablet / desktop instead of stalling at 2 across tablet widths. */
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+  gap: var(--sp-3);
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-4) var(--sp-3);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-1);
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+.card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-2);
+  transform: translateY(-2px);
+}
+
+.card:focus-within {
+  border-color: var(--border-strong);
+}
+
+/* A gold edge on the reading side: grows in on hover, stays on once done. */
+.card::before {
+  content: "";
+  position: absolute;
+  inset-block: var(--sp-4);
+  inset-inline-start: -1px;
+  width: 3px;
+  border-radius: 3px;
+  background: var(--gold);
+  transform: scaleY(0);
+  transition: transform var(--dur-slow) var(--ease);
+}
+
+.card:hover::before,
+.card--done::before {
+  transform: scaleY(1);
+}
+
+/* A card on the shortlist keeps that edge lit all the time, in the accent
+   rather than the gold — gold already means "done", and a card can be both.
+   When it is, done takes the colour: that is the state the student just
+   changed, and the badge below still says which set the card belongs to. */
+.card--key::before {
+  background: var(--accent);
+  transform: scaleY(1);
+}
+
+.card--key.card--done::before {
+  background: var(--gold);
+}
+
+.card--done {
+  border-color: color-mix(in srgb, var(--gold) 42%, var(--border));
+  background: linear-gradient(var(--gold-soft), var(--gold-soft)) padding-box, var(--surface);
+}
+
+.card__top {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.card__number {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  color: var(--ink-3);
+}
+
+.card__number b {
+  font-size: var(--fs-xl);
+  line-height: 1.2;
+  font-weight: 700;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+.card--done .card__number b {
+  color: var(--gold-ink);
+}
+
+.card__flags {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-inline-start: auto;
+}
+
+.card__title {
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ink);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+
+.card__title mark {
+  background: color-mix(in srgb, var(--gold) 34%, transparent);
+  color: inherit;
+  border-radius: 3px;
+  padding: 0 1px;
+}
+
+.card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-1) var(--sp-3);
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+}
+
+.card__meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.card__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding-block-start: var(--sp-3);
+  border-block-start: 1px dashed var(--border);
+  /* Cards in a row stretch to a common height; keep the call to action pinned
+     to the bottom edge so the button line stays level across the row. */
+  margin-block-start: auto;
+}
+
+.card__cta {
+  flex: 1 1 auto;
+}
+
+.card__status[hidden] {
+  display: none;
+}
+
+/* Leads the meta row: a filled pill among plain grey text, so it is picked up
+   while scanning the grid without adding a line to every card. */
+.card__key {
+  padding: 2px 8px;
+  border-radius: var(--r-full);
+  font-weight: 600;
+  color: var(--accent-tint-ink);
+  background: var(--accent-soft);
+}
+
+.card__key[hidden] {
+  display: none;
+}
+
+.card__key .icon {
+  width: 13px;
+  height: 13px;
+}
+
+.card__status--done {
+  font-weight: 600;
+  color: var(--gold-ink);
+}
+
+/* "Done" reads as a task checkbox: an empty ring that fills with gold. The
+   ring uses --ink-3 so the control's edge keeps 3:1 against the card. */
+.card__check {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: 1.5px solid var(--ink-3);
+  border-radius: 50%;
+  color: transparent;
+  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.card__check .icon {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2.6;
+}
+
+.card__toggle:hover .card__check {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.card__toggle[aria-pressed="true"] .card__check {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--ink-inverse);
+}
+
+.card__toggle:active .card__check {
+  transform: scale(0.9);
+}
+
+/* Like the done check, a saved favourite is shown by the glyph filling in —
+   no extra box — so the two toggles read as a pair. */
+.card__fav .icon {
+  width: 20px;
+  height: 20px;
+  transition: transform var(--dur) var(--ease);
+}
+
+.card__fav[aria-pressed="true"] {
+  color: var(--accent-tint-ink);
+}
+
+.card__fav[aria-pressed="true"] .icon {
+  fill: currentColor;
+}
+
+.card__fav:active .icon {
+  transform: scale(0.85);
+}
+
+/* The "resume here" highlight after the user jumps to a form. */
+.card--flash {
+  animation: flash 1.6s var(--ease);
+}
+
+@keyframes flash {
+  0%,
+  100% {
+    box-shadow: var(--shadow-1);
+  }
+  15%,
+  60% {
+    box-shadow: 0 0 0 3px var(--focus-halo), var(--shadow-2);
+  }
+}
+
+/* ---- Skeletons ------------------------------------------------------------- */
+
+.skeleton {
+  min-height: 176px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  position: relative;
+}
+
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, var(--surface-sunken), transparent);
+  animation: shimmer 1.4s infinite;
+}
+
+@keyframes shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* ---- Load more -------------------------------------------------------------- */
+
+.load-more {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+  padding-block: var(--sp-8);
+}
+
+.load-more[hidden] {
+  display: none;
+}
+
+.load-more__meta {
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+}
+
+/* --------------------------------------------------------------------------
+   States: empty / error
+   -------------------------------------------------------------------------- */
+
+.state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: clamp(var(--sp-8), 6vw, var(--sp-16)) var(--sp-4);
+  text-align: center;
+  background: var(--surface-2);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--r-xl);
+}
+
+.state[hidden] {
+  display: none;
+}
+
+.state__icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--surface-sunken);
+  color: var(--ink-3);
+}
+
+.state__title {
+  font-size: var(--fs-xl);
+  font-weight: 700;
+}
+
+.state__text {
+  max-width: 46ch;
+  font-size: var(--fs-md);
+  color: var(--ink-2);
+}
+
+.state__text .term {
+  font-weight: 600;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.state__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--sp-2);
+  margin-block-start: var(--sp-2);
+}
+
+.state__suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--sp-2);
+  margin-block-start: var(--sp-2);
+}
+
+/* --------------------------------------------------------------------------
+   Filter sheet (mobile)
+   -------------------------------------------------------------------------- */
+
+.sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  align-items: end;
+}
+
+.sheet[hidden] {
+  display: none;
+}
+
+.sheet__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 24, 40, 0.5);
+  animation: fade var(--dur) var(--ease);
+}
+
+.sheet__panel {
+  position: relative;
+  max-height: 86dvh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: var(--sp-4) var(--gutter) calc(var(--sp-6) + env(safe-area-inset-bottom));
+  background: var(--surface);
+  border-start-start-radius: var(--r-xl);
+  border-start-end-radius: var(--r-xl);
+  box-shadow: var(--shadow-sheet);
+  animation: slide-up var(--dur-slow) var(--ease);
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(14px);
+    opacity: 0;
+  }
+}
+
+.sheet__head {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding-block-end: var(--sp-4);
+  margin-block-end: var(--sp-4);
+  border-block-end: 1px solid var(--border);
+}
+
+.sheet__head h2 {
+  font-size: var(--fs-xl);
+}
+
+.sheet__close {
+  margin-inline-start: auto;
+}
+
+.sheet__foot {
+  display: flex;
+  gap: var(--sp-2);
+  padding-block-start: var(--sp-4);
+  margin-block-start: var(--sp-4);
+  border-block-start: 1px solid var(--border);
+}
+
+/* Filter group layout — shared by the toolbar and the sheet. */
+.filter-group + .filter-group {
+  margin-block-start: var(--sp-5);
+}
+
+.filter-group__title {
+  display: block;
+  margin-block-end: var(--sp-2);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* When the controls live inside the sheet they stack full width. */
+.sheet .toolbar__controls {
+  display: block;
+  margin: 0;
+}
+
+.sheet .field {
+  display: block;
+}
+
+.sheet .field__label {
+  display: block;
+  margin-block-end: var(--sp-2);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.sheet .field + .field {
+  margin-block-start: var(--sp-5);
+}
+
+.sheet .select {
+  width: 100%;
+  min-height: 46px;
+  font-size: var(--fs-md);
+}
+
+.sheet .segmented {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+}
+
+.sheet .segmented button {
+  min-height: 42px;
+}
+
+@media (max-width: 899px) {
+  .filter-trigger {
+    display: inline-flex;
+  }
+
+  .toolbar__controls--inline {
+    display: none;
+  }
+
+  .toolbar {
+    gap: var(--sp-2);
+  }
+}
+
+/* Badge counter on the mobile filter button */
+.filter-trigger__badge {
+  display: grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: var(--r-full);
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.filter-trigger__badge[hidden] {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Toast
+   -------------------------------------------------------------------------- */
+
+.toast {
+  position: fixed;
+  inset-block-end: calc(var(--sp-5) + env(safe-area-inset-bottom));
+  inset-inline: 0;
+  z-index: 150;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.toast__inner {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-3);
+  max-width: calc(100vw - 2 * var(--gutter));
+  padding: var(--sp-2) var(--sp-4);
+  min-height: 46px;
+  background: var(--navy-700);
+  color: #fff;
+  border-radius: var(--r-full);
+  box-shadow: var(--shadow-3);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.toast--visible .toast__inner {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.toast__text {
+  margin: 0;
+}
+
+.toast__actions {
+  display: inline-flex;
+  flex: none;
+  margin-inline-end: calc(-1 * var(--sp-2));
+}
+
+.toast__actions[hidden] {
+  display: none;
+}
+
+.toast__action {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 var(--sp-3);
+  border-radius: var(--r-full);
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color var(--dur) var(--ease);
+}
+
+.toast__action:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.toast__action:focus-visible {
+  outline: 2px solid var(--gold-400);
+  outline-offset: 2px;
+}
+
+:root[data-theme="dark"] .toast__inner {
+  background: var(--surface-2);
+  border: 1px solid var(--border-strong);
+}
+
+/* --------------------------------------------------------------------------
+   Content pages (about)
+   -------------------------------------------------------------------------- */
+
+.prose {
+  max-width: 68ch;
+}
+
+.prose h2 {
+  margin-block: var(--sp-10) var(--sp-3);
+  font-size: var(--fs-2xl);
+}
+
+.prose h2:first-child {
+  margin-block-start: 0;
+}
+
+.prose h3 {
+  margin-block: var(--sp-6) var(--sp-2);
+}
+
+.prose p,
+.prose ul {
+  color: var(--ink-2);
+  font-size: var(--fs-md);
+}
+
+.prose p + p {
+  margin-block-start: var(--sp-3);
+}
+
+.prose ul {
+  margin-block-start: var(--sp-3);
+  display: grid;
+  gap: var(--sp-2);
+}
+
+.prose li {
+  position: relative;
+  padding-inline-start: var(--sp-5);
+}
+
+.prose li::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0.62em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.prose a {
+  color: var(--accent);
+  font-weight: 600;
+  text-underline-offset: 3px;
+}
+
+.panel {
+  padding: var(--sp-5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-1);
+}
+
+.panel + .panel {
+  margin-block-start: var(--sp-3);
+}
+
+.page-head {
+  padding-block: clamp(var(--sp-8), 4vw, var(--sp-10));
+  background-image: var(--hero-wash);
+  border-block-end: 1px solid var(--border);
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-block-end: var(--sp-3);
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.breadcrumb a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+/* The separator must point the RTL way (right → left). */
+.breadcrumb li + li::before {
+  content: "‹";
+  margin-inline-end: var(--sp-2);
+}
+
+.breadcrumb ol {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+
+.breadcrumb li {
+  display: flex;
+  align-items: center;
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+
+.site-footer {
+  margin-block-start: var(--sp-12);
+  padding-block: var(--sp-8);
+  background: var(--bg-alt);
+  border-block-start: 1px solid var(--border);
+}
+
+.footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-4) var(--sp-6);
+}
+
+.footer__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.footer__brand img {
+  width: 64px;
+  height: 64px;
+  filter: drop-shadow(0 4px 10px rgba(26, 48, 73, 0.2));
+}
+
+.footer__name {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.footer__sub {
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+}
+
+.footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  margin-inline-start: auto;
+  font-size: var(--fs-sm);
+}
+
+.footer__links a {
+  color: var(--ink-2);
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.footer__links a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer__legal {
+  width: 100%;
+  padding-block-start: var(--sp-4);
+  border-block-start: 1px solid var(--border);
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+}
+
+/* --------------------------------------------------------------------------
+   Utilities
+   -------------------------------------------------------------------------- */
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  border: 0;
+}
+
+[dir="rtl"] .flip {
+  transform: scaleX(-1);
+}
+
+.js-hidden {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   Filter controls container — this node physically moves between the desktop
+   toolbar and the mobile sheet, so it owns both layouts.
+   -------------------------------------------------------------------------- */
+
+#filterControls {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+}
+
+.sheet #filterControls {
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   Range quick-jump chips
+   -------------------------------------------------------------------------- */
+
+.ranges {
+  margin-block-end: var(--sp-4);
+}
+
+/* On narrow screens the chips scroll sideways instead of stacking three rows
+   deep and pushing the cards off screen. The gutter is bled so the row can
+   reach the edge while the first chip still lines up with the content. */
+@media (max-width: 1023px) {
+  .ranges {
+    margin-inline: calc(-1 * var(--gutter));
+    padding-inline: var(--gutter);
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .ranges::-webkit-scrollbar {
+    display: none;
+  }
+
+  .ranges .chips {
+    flex-wrap: nowrap;
+    width: max-content;
+    padding-block-end: 2px;
+  }
+}
+
+#scrollSentinel {
+  height: 1px;
+}
+
+#exams {
+  padding-block-start: var(--sp-8);
+}
+
+/* --------------------------------------------------------------------------
+   Progressive enhancement: the skeletons are only meaningful while JS boots.
+   -------------------------------------------------------------------------- */
+
+.grid[aria-busy="false"] .skeleton {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Search: compact behaviour on small screens
+   -------------------------------------------------------------------------- */
+
+.hero__hint {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+@media (min-width: 900px) {
+  .hero__hint {
+    justify-content: flex-start;
+  }
+}
+
+/* Results update as you type, so on a phone the submit button collapses to its
+   icon rather than eating a third of the field. */
+@media (max-width: 479px) {
+  .search__submit-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .search__submit {
+    padding-inline: var(--sp-3);
+  }
+
+  /* A pointer-driven keyboard shortcut is noise on a touch device. */
+  .hero__hint-sep,
+  .hero__hint-key {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Quick access on phones
+   Full-width tiles pushed the exam list far below the fold. The two tiles
+   whose wording carries information — the shortlist and "resume" — keep a row
+   each, and the other three collapse to a compact icon-over-label row.
+   Selected by class, not by position: the shortlist tile was added ahead of
+   the others, and :first-child would have demoted the wrong one.
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 559px) {
+  .quick__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--sp-2);
+  }
+
+  .quick__grid > .tile--accent {
+    grid-column: 1 / -1;
+  }
+
+  .quick__grid > .tile:not(.tile--accent):not(.tile--key) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sp-2);
+    min-height: 82px;
+    padding: var(--sp-3) var(--sp-2);
+    text-align: center;
+  }
+
+  .quick__grid > .tile:not(.tile--accent):not(.tile--key) .tile__icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .quick__grid > .tile:not(.tile--accent):not(.tile--key) .tile__go {
+    display: none;
+  }
+
+  .quick__grid > .tile:not(.tile--accent):not(.tile--key) .tile__label {
+    font-size: var(--fs-xs);
+    line-height: 1.3;
+    white-space: normal;
+  }
+
+  /* The count/description is available on the destination screen anyway. */
+  .quick__grid > .tile:not(.tile--accent):not(.tile--key) .tile__meta {
+    display: none;
+  }
+
+  /* On a phone the shortlist blurb is squeezed between the icon and the state
+     pill and runs to four lines, pushing the list off the screen. Drop the
+     pill — the filled surface already says the filter is on, and aria-pressed
+     still carries it to a screen reader — and hold the blurb to two lines. */
+  .tile--key .tile__state {
+    display: none;
+  }
+
+  .tile--key .tile__meta {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .progress {
+    gap: var(--sp-2) var(--sp-3);
+  }
+
+  /* Too narrow for label / bar / percent side by side: give each track two
+     rows, the label spanning the full width above its own bar. */
+  .progress__tracks {
+    grid-template-columns: minmax(60px, 1fr) auto;
+    gap: var(--sp-1) var(--sp-3);
+  }
+
+  .progress__label {
+    grid-column: 1 / -1;
+  }
+
+  .progress__track + .progress__track .progress__label {
+    margin-block-start: var(--sp-2);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Layout stability
+   The chip row and the card grid are both populated by script. Reserving their
+   first-paint height keeps cumulative layout shift near zero.
+   -------------------------------------------------------------------------- */
+
+.ranges {
+  min-height: 34px; /* one chip row */
+}
+
+.skeleton {
+  min-height: 210px; /* matches a rendered card */
+}
+
+/* --------------------------------------------------------------------------
+   The teacher: authority band on the home page, profile page header
+   -------------------------------------------------------------------------- */
+
+.section__title {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-block-end: var(--sp-5);
+  font-size: var(--fs-2xl);
+}
+
+.section__title::before {
+  content: "";
+  flex: none;
+  width: 4px;
+  height: 1em;
+  border-radius: 2px;
+  background: linear-gradient(var(--gold), var(--accent));
+}
+
+.teacher {
+  padding-block: clamp(var(--sp-10), 6vw, var(--sp-16));
+  background: var(--bg-alt);
+  border-block-start: 1px solid var(--border);
+}
+
+.teacher__inner {
+  display: grid;
+  gap: clamp(var(--sp-6), 4vw, var(--sp-10));
+}
+
+@media (min-width: 900px) {
+  .teacher__inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    align-items: center;
+  }
+}
+
+.teacher__title {
+  margin-block-end: var(--sp-2);
+  font-size: var(--fs-display);
+  line-height: 1.22;
+}
+
+.teacher__role {
+  margin-block-end: var(--sp-4);
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  line-height: var(--lh-snug);
+  color: var(--gold-ink);
+}
+
+.teacher__bio {
+  max-width: 60ch;
+  color: var(--ink-2);
+  line-height: var(--lh-normal);
+}
+
+.teacher__bio strong,
+.profile__lead strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.teacher__bio + .teacher__bio {
+  margin-block-start: var(--sp-3);
+}
+
+.teacher__cta {
+  margin-block-start: var(--sp-5);
+}
+
+/* ---- Credential cards ------------------------------------------------------ */
+
+/* Always a clean 2 x 2 (never 3 + 1); four across only on the wide page grid. */
+.credentials {
+  display: grid;
+  gap: var(--sp-3);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (min-width: 900px) {
+  .credentials--wide {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 339px) {
+  .credentials {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 559px) {
+  .credentials {
+    gap: var(--sp-2);
+  }
+
+  .credential {
+    padding: var(--sp-3);
+  }
+
+  .credential__icon {
+    width: 36px;
+    height: 36px;
+    margin-block-end: var(--sp-2);
+  }
+}
+
+.credential {
+  padding: var(--sp-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-1);
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+.credential:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-2);
+  transform: translateY(-2px);
+}
+
+.credential__icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  margin-block-end: var(--sp-3);
+  border-radius: 12px;
+  background: var(--gold-soft);
+  color: var(--gold-ink);
+}
+
+.credential__title {
+  margin-block-end: 4px;
+  font-size: var(--fs-md);
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.credential__text {
+  font-size: var(--fs-sm);
+  line-height: var(--lh-snug);
+  color: var(--ink-3);
+}
+
+/* ---- Profile page header --------------------------------------------------- */
+
+.profile {
+  position: relative;
+  isolation: isolate;
+  background-image: var(--hero-wash);
+  border-block-end: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.profile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: radial-gradient(var(--dots) 1.1px, transparent 1.4px);
+  background-size: 22px 22px;
+  -webkit-mask-image: radial-gradient(60% 85% at 18% 45%, #000, transparent 72%);
+  mask-image: radial-gradient(60% 85% at 18% 45%, #000, transparent 72%);
+  pointer-events: none;
+}
+
+.profile__inner {
+  display: grid;
+  justify-items: center;
+  gap: var(--sp-8);
+  padding-block: clamp(var(--sp-6), 4vw, var(--sp-10)) clamp(var(--sp-8), 5vw, var(--sp-12));
+  text-align: center;
+}
+
+.profile__copy {
+  width: 100%;
+  max-width: 640px;
+  min-width: 0;
+}
+
+.profile__name {
+  margin-block-end: var(--sp-2);
+  font-size: var(--fs-hero);
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+}
+
+.profile__role {
+  margin-block-end: var(--sp-4);
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  line-height: var(--lh-snug);
+  color: var(--gold-ink);
+}
+
+.profile__lead {
+  max-width: 56ch;
+  margin-inline: auto;
+  font-size: var(--fs-lg);
+  line-height: var(--lh-snug);
+  color: var(--ink-2);
+  text-wrap: balance;
+}
+
+.profile__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--sp-2);
+  margin-block-start: var(--sp-6);
+}
+
+.profile__brand {
+  position: relative;
+  order: -1;
+  margin: 0;
+  padding-block-end: var(--sp-4);
+}
+
+.profile .breadcrumb {
+  justify-content: center;
+}
+
+@media (min-width: 900px) {
+  .profile__inner {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    align-items: center;
+    justify-items: stretch;
+    gap: clamp(var(--sp-8), 5vw, var(--sp-16));
+    padding-block: clamp(var(--sp-8), 5vw, var(--sp-12));
+    text-align: start;
+  }
+
+  .profile__copy {
+    max-width: none;
+  }
+
+  .profile__lead {
+    margin-inline: 0;
+  }
+
+  .profile__actions {
+    justify-content: flex-start;
+  }
+
+  .profile__brand {
+    order: 0;
+    justify-self: center;
+    padding-block-end: var(--sp-6);
+  }
+
+  .profile .breadcrumb {
+    justify-content: flex-start;
+  }
+
+  .profile .seal {
+    width: clamp(240px, 22vw, 300px);
+    padding: 10px;
+  }
+}
+
+/* ---- Story + pull quote ----------------------------------------------------- */
+
+.split {
+  display: grid;
+  gap: clamp(var(--sp-6), 4vw, var(--sp-10));
+}
+
+@media (min-width: 900px) {
+  .split {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+.quote {
+  position: relative;
+  padding: var(--sp-6);
+  background: linear-gradient(150deg, var(--gold-soft), var(--surface));
+  border: 1px solid var(--border);
+  border-inline-start: 4px solid var(--gold);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-2);
+  overflow: hidden;
+}
+
+.quote__text {
+  position: relative;
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.quote__by {
+  margin-block-start: var(--sp-3);
+  font-size: var(--fs-xs);
+  color: var(--gold-ink);
+}
+
+/* ---- Feature panel ---------------------------------------------------------- */
+
+.panel--feature {
+  padding: clamp(var(--sp-5), 4vw, var(--sp-8));
+  background: linear-gradient(160deg, var(--surface-2), var(--surface));
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-2);
+}
+
+.panel__lead {
+  max-width: 62ch;
+  font-size: var(--fs-lg);
+  line-height: var(--lh-snug);
+  color: var(--ink-2);
+}
+
+.panel__lead strong {
+  color: var(--ink);
+}
+
+.panel__actions {
+  margin-block-start: var(--sp-5);
+}
+
+/* --------------------------------------------------------------------------
+   The teacher's photos
+   -------------------------------------------------------------------------- */
+
+/* Brand-glyph icons (WhatsApp, Facebook) are filled, not stroked. */
+.icon--fill {
+  fill: currentColor;
+  stroke: none;
+}
+
+/* Circle portrait inside the existing .seal frame. */
+.seal__img--photo {
+  object-fit: cover;
+}
+
+/* The emblem, pinned to the portrait's rim. */
+.seal__badge {
+  position: absolute;
+  z-index: 1;
+  inset-block-end: 4%;
+  inset-inline-end: -8%;
+  width: 34%;
+  aspect-ratio: 1;
+  filter: drop-shadow(0 6px 12px rgba(26, 48, 73, 0.3));
+}
+
+/* Arch: the full-length cut-out standing on a navy stage. The rounded top is
+   a full semicircle at any width (radius larger than half the box). */
+.portrait {
+  position: relative;
+  min-width: 0;
+  margin: 0;
+  padding-block-end: var(--sp-5);
+}
+
+.arch {
+  position: relative;
+  /* An explicit width, because everything inside is absolutely positioned:
+     a percentage width would resolve against a figure that has no width of
+     its own, and the frame would collapse. */
+  width: var(--arch-w, 340px);
+  max-width: 100%;
+  aspect-ratio: 4 / 5;
+  margin-inline: auto;
+  border-radius: 999px 999px var(--r-xl) var(--r-xl);
+  background: var(--stage);
+  box-shadow: var(--seal-shadow);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Gold hairline just inside the arch edge. */
+.arch::after {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  z-index: 2;
+  border: 1px solid rgba(205, 177, 132, 0.5);
+  border-radius: 999px 999px calc(var(--r-xl) - 6px) calc(var(--r-xl) - 6px);
+  pointer-events: none;
+}
+
+/* A soft light behind the head so the photo separates from the stage. */
+.arch::before {
+  content: "";
+  position: absolute;
+  inset: 8% 18% auto;
+  z-index: 0;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(205, 177, 132, 0.28), transparent);
+}
+
+.arch__img {
+  position: absolute;
+  z-index: 1;
+  inset-inline: 0;
+  inset-block-end: 0;
+  width: 100%;
+  height: auto;
+}
+
+/* Dashed orbit, echoing the seal. */
+.portrait__orbit {
+  position: absolute;
+  inset-block: -14px calc(var(--sp-5) - 14px);
+  inset-inline: -14px;
+  border: 1.5px dashed var(--seal-line);
+  border-radius: 999px 999px calc(var(--r-xl) + 14px) calc(var(--r-xl) + 14px);
+  pointer-events: none;
+}
+
+.portrait__caption {
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline: -100%;
+  z-index: 3;
+  margin-inline: auto;
+  width: max-content;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: var(--sp-2) var(--sp-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-full);
+  box-shadow: var(--shadow-2);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.portrait__caption span {
+  font-weight: 500;
+  color: var(--gold-ink);
+}
+
+/* --------------------------------------------------------------------------
+   Contact
+   -------------------------------------------------------------------------- */
+
+.btn--whatsapp {
+  background: var(--wa);
+  color: #fff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 10px 20px -12px rgba(15, 122, 69, 0.7);
+}
+
+.btn--whatsapp:hover {
+  background: var(--wa-hover);
+}
+
+.btn--whatsapp .icon {
+  width: 1.25em;
+  height: 1.25em;
+}
+
+.icon-btn--whatsapp {
+  color: var(--wa-icon);
+}
+
+.contact-card {
+  display: grid;
+  gap: var(--sp-5) var(--sp-8);
+  align-items: center;
+  padding: clamp(var(--sp-5), 4vw, var(--sp-10));
+  background: linear-gradient(150deg, var(--surface-2), var(--surface));
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-2);
+  text-align: center;
+  justify-items: center;
+}
+
+@media (min-width: 720px) {
+  .contact-card {
+    grid-template-columns: auto minmax(0, 1fr);
+    text-align: start;
+    justify-items: stretch;
+  }
+}
+
+.contact-card__avatar {
+  width: clamp(112px, 14vw, 148px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px var(--surface), 0 0 0 5px var(--seal-line), var(--shadow-2);
+}
+
+.contact-card__title {
+  margin-block-end: var(--sp-2);
+  font-size: var(--fs-2xl);
+}
+
+.contact-card__lead {
+  max-width: 58ch;
+  color: var(--ink-2);
+  line-height: var(--lh-snug);
+}
+
+.section__note {
+  max-width: 68ch;
+  margin-block-start: var(--sp-5);
+  font-size: var(--fs-xs);
+  line-height: var(--lh-normal);
+  color: var(--ink-3);
+}
+
+.contact-card__phone {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-block-start: var(--sp-3);
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--gold);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+
+.contact-card__phone:hover {
+  color: var(--accent);
+  text-decoration-color: currentColor;
+}
+
+.contact-card__phone .icon {
+  color: var(--gold-ink);
+}
+
+.contact-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--sp-2);
+  margin-block-start: var(--sp-4);
+}
+
+@media (min-width: 720px) {
+  .contact-card__actions {
+    justify-content: flex-start;
+  }
+}
+
+/* Footer contact row */
+.footer__contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3) var(--sp-4);
+  width: 100%;
+  font-size: var(--fs-sm);
+}
+
+.footer__contact a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding-block: var(--sp-1);
+  color: var(--ink-2);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+  text-underline-offset: 3px;
+  border-radius: 4px;
+}
+
+.footer__contact a:hover {
+  color: var(--ink);
+  text-decoration-color: currentColor;
+}
+
+.footer__contact .icon {
+  width: 18px;
+  height: 18px;
+}
+
+.footer__contact a[data-kind="whatsapp"] .icon {
+  color: var(--wa-icon);
+}
+
+/* --------------------------------------------------------------------------
+   Teacher-first layout: byline, photo in the home section, profile header
+   -------------------------------------------------------------------------- */
+
+/* "إعداد مستر هشام خليل" under the home headline. */
+.hero__byline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-3);
+  margin-block-end: var(--sp-4);
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+  color: var(--ink-2);
+  text-align: start;
+}
+
+.hero__byline-avatar {
+  width: 46px;
+  height: 46px;
+  flex: none;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 0 2px var(--surface), 0 0 0 3px var(--seal-line), var(--shadow-1);
+}
+
+.hero__byline a {
+  color: var(--ink);
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+
+@media (min-width: 900px) {
+  .hero__byline {
+    justify-content: flex-start;
+  }
+}
+
+/* Home section: text and photo side by side, credentials across the bottom. */
+.teacher__photo {
+  --arch-w: 280px;
+  justify-self: center;
+}
+
+@media (min-width: 900px) {
+  .teacher__inner {
+    grid-template-columns: minmax(0, 1.15fr) auto;
+    grid-template-areas:
+      "intro photo"
+      "cards cards";
+    align-items: center;
+  }
+
+  .teacher__intro {
+    grid-area: intro;
+  }
+
+  .teacher__photo {
+    --arch-w: 300px;
+    grid-area: photo;
+  }
+
+  .teacher .credentials {
+    grid-area: cards;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-block-start: var(--sp-4);
+  }
+}
+
+.teacher__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+/* Profile page: the name carries his title. */
+.profile__name-role {
+  display: block;
+  margin-block-start: var(--sp-2);
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.profile__brand {
+  --arch-w: 260px;
+}
+
+@media (min-width: 900px) {
+  .profile__brand {
+    --arch-w: 340px;
+  }
+}
+
+.contact-card__body {
+  min-width: 0;
+}
+
+/* The header carries a brand, a WhatsApp link, the theme toggle and the menu:
+   on the narrowest phones they need a little less room each. */
+@media (max-width: 400px) {
+  .header__inner {
+    gap: var(--sp-2);
+  }
+
+  .brand {
+    gap: var(--sp-2);
+  }
+
+  .brand__mark {
+    width: 38px;
+    height: 38px;
+  }
+
+  .brand__name {
+    font-size: var(--fs-md);
+  }
+
+  .header__actions .icon-btn {
+    width: 38px;
+    height: 38px;
+  }
+}

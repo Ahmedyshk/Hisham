@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>__SITE_URL__</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>__SITE_URL__assets/img/logo-256.png</image:loc>
+      <image:title>شعار دفرنة في القدرات والتحصيلي — مستر هشام خليل</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>__SITE_URL__assets/img/teacher-portrait.jpg</image:loc>
+      <image:title>مستر هشام خليل — مدرب قدرات كمي</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>__SITE_URL__teacher.html</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>__SITE_URL__assets/img/teacher-standing-720.webp</image:loc>
+      <image:title>مستر هشام خليل، مدرب قدرات كمي ومدرب معتمد — دفرنة في القدرات والتحصيلي</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>__SITE_URL__assets/img/teacher-portrait.jpg</image:loc>
+      <image:title>مستر هشام خليل — مدرب قدرات كمي</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>__SITE_URL__about.html</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+</urlset>

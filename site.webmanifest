@@ -1,0 +1,56 @@
+{
+  "id": "./",
+  "name": "دفرنة في القدرات والتحصيلي — مستر هشام خليل",
+  "short_name": "دفرنة",
+  "description": "تجميعات القدرات الكمي في 48 إصدارًا من إعداد مستر هشام خليل، مدرب قدرات كمي ومدرب معتمد — ابحث عن الإصدار وابدأ الاختبار مباشرة.",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#f6f2e9",
+  "theme_color": "#223e5b",
+  "categories": ["education"],
+  "icons": [
+    {
+      "src": "assets/img/logo-256.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/img/maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "assets/img/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "الإصدارات",
+      "short_name": "الإصدارات",
+      "url": "./#exams",
+      "icons": [{ "src": "assets/img/maskable-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "مستر هشام خليل",
+      "short_name": "المستر",
+      "url": "./teacher.html",
+      "icons": [{ "src": "assets/img/maskable-192.png", "sizes": "192x192", "type": "image/png" }]
+    }
+  ]
+}

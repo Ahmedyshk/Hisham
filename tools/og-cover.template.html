@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<!--
+  Source of assets/img/og-cover.jpg (1200 x 630), the image shown when a link
+  to the site is shared on WhatsApp, X, Telegram and the like. Regenerate:
+
+    chrome --headless=new --hide-scrollbars --force-device-scale-factor=1 \
+      --window-size=1200,630 --screenshot=og.png tools/og-cover.template.html
+    then convert og.png to JPEG (quality ~88) as assets/img/og-cover.jpg
+
+  It mirrors the form banners: paper with a graph grid, navy and gold rules
+  top and bottom, the emblem on the left and the wordmark on the right.
+-->
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      @font-face {
+        font-family: "Plex";
+        font-weight: 700;
+        src: url("../assets/fonts/plex-ar-700.woff2") format("woff2");
+        unicode-range: U+0600-06FF, U+FB50-FDFF, U+FE70-FEFC;
+      }
+      @font-face {
+        font-family: "Plex";
+        font-weight: 700;
+        src: url("../assets/fonts/plex-lat-700.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Plex";
+        font-weight: 500;
+        src: url("../assets/fonts/plex-ar-500.woff2") format("woff2");
+        unicode-range: U+0600-06FF, U+FB50-FDFF, U+FE70-FEFC;
+      }
+      @font-face {
+        font-family: "Amiri";
+        font-weight: 700;
+        src: url("../assets/fonts/amiri-700-sub.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Lalezar";
+        src: url("../assets/fonts/lalezar-sub.woff2") format("woff2");
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+
+      html,
+      body {
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+      }
+
+      body {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 470px;
+        align-items: center;
+        padding: 40px 70px 40px 50px;
+        background-color: #f6f2e9;
+        background-image: radial-gradient(70% 90% at 100% 0%, rgba(186, 154, 104, 0.22), transparent 62%),
+          radial-gradient(60% 80% at 0% 100%, rgba(136, 173, 195, 0.18), transparent 65%),
+          linear-gradient(rgba(34, 62, 91, 0.06) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(34, 62, 91, 0.06) 1px, transparent 1px);
+        background-size: auto, auto, 24px 24px, 24px 24px;
+        font-family: "Plex", system-ui, sans-serif;
+        color: #1a3049;
+      }
+
+      body::before,
+      body::after {
+        content: "";
+        position: absolute;
+        inset-inline: 0;
+        height: 20px;
+        background: #223e5b;
+        box-shadow: 0 0 0 0 transparent;
+      }
+
+      body::before {
+        top: 0;
+        border-bottom: 5px solid #ba9a68;
+      }
+
+      body::after {
+        bottom: 0;
+        border-top: 5px solid #ba9a68;
+      }
+
+      .copy {
+        text-align: center;
+      }
+
+      .brand {
+        font-family: "Lalezar", sans-serif;
+        font-size: 74px;
+        line-height: 1.3;
+        color: #223e5b;
+        text-shadow: 0 4px 0 #e0caa4;
+      }
+
+      .rule {
+        width: 560px;
+        height: 3px;
+        margin: 6px auto 0;
+        background: linear-gradient(90deg, transparent, #ba9a68, transparent);
+      }
+
+      .verse {
+        margin-top: 14px;
+        font-family: "Amiri", serif;
+        font-weight: 700;
+        font-size: 38px;
+        line-height: 1.7;
+        color: #1a3049;
+      }
+
+      .verse b {
+        color: #ba9a68;
+        font-weight: 400;
+      }
+
+      .name {
+        margin-top: 10px;
+        font-size: 46px;
+        font-weight: 700;
+        line-height: 1.3;
+      }
+
+      .role {
+        margin-top: 4px;
+        font-size: 24px;
+        font-weight: 500;
+        color: #96733a;
+      }
+
+      .center {
+        margin-top: 2px;
+        font-size: 22px;
+        font-weight: 500;
+        color: #485870;
+      }
+
+      .phone {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        margin-top: 22px;
+        padding: 10px 34px;
+        background: #223e5b;
+        border: 3px solid #ba9a68;
+        border-radius: 999px;
+        color: #fff;
+        font-size: 36px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        direction: ltr;
+      }
+
+      .phone svg {
+        width: 30px;
+        height: 30px;
+        fill: none;
+        stroke: #e0caa4;
+        stroke-width: 1.8;
+      }
+
+      .emblem {
+        width: 470px;
+        height: 470px;
+        filter: drop-shadow(0 22px 34px rgba(26, 48, 73, 0.3));
+      }
+    </style>
+  </head>
+  <body>
+    <div class="copy">
+      <p class="brand">دفرنة في القدرات والتحصيلي</p>
+      <div class="rule"></div>
+      <p class="verse"><b>﴿</b>يُرِيدُ اللَّهُ بِكُمُ الْيُسْرَ وَلَا يُرِيدُ بِكُمُ الْعُسْرَ<b>﴾</b></p>
+      <p class="name">مستر / هشام خليل</p>
+      <p class="role">مدرب قدرات كمي — مدرب معتمد</p>
+      <p class="center">المركز العربي للتدريب والتنمية البشرية</p>
+      <p class="phone">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 16.6v2.8a1.9 1.9 0 0 1-2.1 1.9A18.8 18.8 0 0 1 2.7 5.6 1.9 1.9 0 0 1 4.6 3.5h2.8a1.9 1.9 0 0 1 1.9 1.6c.12.9.34 1.79.66 2.63a1.9 1.9 0 0 1-.43 2L8.3 10.9a15.2 15.2 0 0 0 4.8 4.8l1.17-1.17a1.9 1.9 0 0 1 2-.43c.84.32 1.73.54 2.63.66a1.9 1.9 0 0 1 1.6 1.84z" /></svg>
+        0508145231
+      </p>
+    </div>
+    <img class="emblem" src="../assets/img/mark-720.webp" alt="" />
+  </body>
+</html>

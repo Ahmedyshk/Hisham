@@ -1,0 +1,117 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+# Allow the workflow to publish to Pages.
+# `pages: write` is also what lets configure-pages create the Pages site itself
+# (see the `enablement` input below).
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never run two deployments at once; queued runs supersede each other.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Reports the real published URL (origin + base path) BEFORE the upload, so
+      # canonical/OG/sitemap URLs can be stamped correctly for a project page, a
+      # user page or a custom domain.
+      #
+      # `enablement: true` creates the Pages site if the repository does not have
+      # one yet — without it this step fails with "Get Pages site failed … Not
+      # Found" on a repository where Pages has never been turned on.
+      #
+      # It is allowed to fail: publishing must not depend on being able to look
+      # the URL up, so the next step derives a fallback instead.
+      - name: Configure Pages
+        id: pages
+        continue-on-error: true
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      # If the lookup above succeeded, use the URL it reported. Otherwise derive
+      # the conventional one: github.io sites are always
+      # https://<owner>.github.io/<repo>/, except the <owner>.github.io repo
+      # itself, which is served from the domain root.
+      - name: Resolve the site URL
+        id: site
+        run: |
+          url="${{ steps.pages.outputs.base_url }}"
+          if [ -z "$url" ]; then
+            owner=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+            repo="${{ github.event.repository.name }}"
+            if [ "$(echo "$repo" | tr '[:upper:]' '[:lower:]')" = "$owner.github.io" ]; then
+              url="https://$owner.github.io/"
+            else
+              url="https://$owner.github.io/$repo/"
+            fi
+            echo "configure-pages did not report a URL; using the derived default."
+          fi
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+          echo "Site URL: $url"
+
+      - name: Rebuild the exam dataset from the source export
+        run: node tools/build-data.mjs
+
+      - name: Run search and data tests
+        run: node tools/test-search.mjs
+
+      - name: Run progress store tests
+        run: node tools/test-store.mjs
+
+      - name: Check SEO and structured data
+        run: node tools/test-seo.mjs
+
+      - name: Validate every exam link resolves
+        run: node tools/check-links.mjs --offline
+
+      - name: Stamp the real site URL into metadata
+        run: node tools/set-site-url.mjs "${{ steps.site.outputs.url }}"
+
+      # Tells Pages to serve the files as-is instead of running them through
+      # Jekyll (which would drop anything starting with "_" and choke on the
+      # non-ASCII filenames in data/source/).
+      - name: Disable Jekyll processing
+        run: touch .nojekyll
+
+      # The export is read to BUILD the dataset, never to serve it, and Pages
+      # publishes whatever is in the folder — so it would sit at a guessable
+      # URL under /data/source/. Every step that needs it has already run by
+      # now; this removes it from the uploaded artifact only, not from the
+      # repository.
+      - name: Keep the source export out of the published site
+        run: rm -rf data/source
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

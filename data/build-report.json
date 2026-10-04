@@ -1,0 +1,21 @@
+{
+  "sourceFile": "data/source/forms.json",
+  "sourceRecords": 0,
+  "published": 0,
+  "excluded": 0,
+  "issues": [],
+  "questions": {
+    "total": null,
+    "perForm": null,
+    "typical": null,
+    "counted": 0
+  },
+  "priority": {
+    "label": "ابدأ بهذه",
+    "listed": 0,
+    "flagged": 0,
+    "unknown": []
+  },
+  "outputBytes": 342,
+  "ranges": []
+}

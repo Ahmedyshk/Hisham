@@ -1,0 +1,753 @@
+/* ==========================================================================
+   دفرنة — identity layer
+   Everything specific to this brand: the verse wherever it appears, the
+   graph-paper ground and faint math symbols of the form banners, the emblem,
+   the "coming soon" state, and installing the site as an app.
+   Loaded after components.css on every page.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   The verse — يُرِيدُ اللَّهُ بِكُمُ الْيُسْرَ وَلَا يُرِيدُ بِكُمُ الْعُسْرَ
+   One typographic voice for it everywhere: Amiri, bold, never stretched,
+   never italicised, never animated.
+   -------------------------------------------------------------------------- */
+
+.verse {
+  font-family: var(--font-verse);
+  font-weight: 700;
+  font-style: normal;
+  line-height: 1.9;
+  letter-spacing: 0;
+  word-spacing: 0.06em;
+  text-wrap: balance;
+}
+
+.verse__bracket {
+  display: inline-block;
+  padding-inline: 0.18em;
+  color: var(--gold);
+  font-weight: 400;
+}
+
+.verse__ref {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--ink-3);
+}
+
+/* The flourish beside the verse on the banners: a diamond between rules. */
+.orn {
+  display: inline-block;
+  flex: none;
+  width: 34px;
+  height: 14px;
+  color: var(--gold-500);
+}
+
+.orn--flip {
+  transform: scaleX(-1);
+}
+
+/* ---- 1. The strip above every page ---------------------------------------- */
+
+.verse-strip {
+  position: relative;
+  background: var(--verse-bg);
+  color: var(--verse-ink);
+  overflow: hidden;
+}
+
+/* A gold hairline under the navy, like the banners' top edge. */
+.verse-strip::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold-500), transparent);
+  opacity: 0.75;
+}
+
+.verse-strip__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-3);
+  min-height: 40px;
+  padding-block: 2px;
+}
+
+.verse-strip .verse {
+  margin: 0;
+  font-size: clamp(0.98rem, 0.9rem + 0.35vw, 1.15rem);
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+.verse-strip .verse__bracket,
+.verse-strip .orn {
+  color: var(--gold-400);
+}
+
+@media (max-width: 380px) {
+  .verse-strip .orn {
+    display: none;
+  }
+
+  .verse-strip .verse {
+    font-size: 0.95rem;
+  }
+}
+
+/* ---- 2. The plaque in the hero ---------------------------------------------- */
+
+.verse-plaque {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-3);
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto var(--sp-5);
+  padding: var(--sp-2) var(--sp-5);
+  background: linear-gradient(180deg, var(--surface), var(--gold-soft));
+  border: 1px solid color-mix(in srgb, var(--gold-500) 45%, var(--border));
+  border-radius: var(--r-full);
+  box-shadow: var(--shadow-2), inset 0 0 0 3px var(--surface);
+}
+
+.verse-plaque blockquote {
+  margin: 0;
+  min-width: 0;
+}
+
+.verse-plaque .verse {
+  margin: 0;
+  font-size: clamp(1.15rem, 0.95rem + 0.9vw, 1.6rem);
+  line-height: 1.75;
+  color: var(--ink);
+}
+
+.verse-plaque .verse__ref {
+  display: block;
+  margin-block-start: -6px;
+  text-align: center;
+}
+
+@media (min-width: 900px) {
+  .verse-plaque {
+    margin-inline: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .verse-plaque {
+    padding-inline: var(--sp-3);
+    gap: var(--sp-2);
+  }
+
+  .verse-plaque .orn {
+    width: 20px;
+  }
+}
+
+/* Inside running text (about page): it keeps its pill, at the reading edge. */
+.verse-plaque--prose {
+  margin-block: var(--sp-6);
+  margin-inline: 0;
+}
+
+.page-head__lead {
+  max-width: 60ch;
+  margin-block-start: var(--sp-2);
+  font-size: var(--fs-lg);
+  color: var(--ink-2);
+}
+
+.prose__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-block-start: var(--sp-6);
+}
+
+/* ---- 3. The band between sections ------------------------------------------- */
+
+.verse-band {
+  position: relative;
+  isolation: isolate;
+  padding-block: clamp(var(--sp-10), 7vw, 5rem);
+  background: var(--verse-bg);
+  color: var(--verse-ink);
+  text-align: center;
+  overflow: hidden;
+}
+
+/* The banners' graph paper, in gold on navy. */
+.verse-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: linear-gradient(rgba(205, 177, 132, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(205, 177, 132, 0.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+  -webkit-mask-image: radial-gradient(70% 90% at 50% 50%, #000, transparent 80%);
+  mask-image: radial-gradient(70% 90% at 50% 50%, #000, transparent 80%);
+}
+
+/* Gold edges top and bottom, as on the banners. */
+.verse-band::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, transparent, var(--gold-500), transparent) top / 100% 3px no-repeat,
+    linear-gradient(90deg, transparent, var(--gold-500), transparent) bottom / 100% 3px no-repeat;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.verse-band .symbols {
+  color: rgba(205, 177, 132, 0.1);
+}
+
+.verse-band__rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-3);
+  color: var(--gold-400);
+}
+
+.verse-band__rule::before,
+.verse-band__rule::after {
+  content: "";
+  width: min(18vw, 140px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--verse-line));
+}
+
+.verse-band__rule::after {
+  transform: scaleX(-1);
+}
+
+.verse-band__rule svg {
+  width: 14px;
+  height: 14px;
+}
+
+.verse-band .verse {
+  margin-block: var(--sp-4) var(--sp-2);
+  font-size: clamp(1.7rem, 1rem + 3.2vw, 3.1rem);
+  line-height: 1.8;
+  color: var(--verse-ink);
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.25);
+}
+
+.verse-band .verse__bracket {
+  color: var(--gold-400);
+}
+
+.verse-band .verse__ref {
+  display: block;
+  margin-block-end: var(--sp-5);
+  font-size: var(--fs-sm);
+  color: var(--verse-ink-2);
+}
+
+.verse-band__note {
+  max-width: 52ch;
+  margin-inline: auto;
+  font-size: var(--fs-md);
+  line-height: var(--lh-snug);
+  color: rgba(255, 255, 255, 0.82);
+}
+
+/* ---- 4. Inline, inside prose and states ------------------------------------- */
+
+.verse--inline {
+  font-size: 1.35rem;
+  color: var(--ink);
+}
+
+/* --------------------------------------------------------------------------
+   Graph paper + math symbols — the ground of the form banners
+   -------------------------------------------------------------------------- */
+
+.hero::before,
+.profile::before,
+.page-head::before {
+  background-image: linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(var(--grid-line-strong) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line-strong) 1px, transparent 1px);
+  background-size: 24px 24px, 24px 24px, 120px 120px, 120px 120px;
+  -webkit-mask-image: radial-gradient(85% 100% at 30% 40%, #000 30%, transparent 88%);
+  mask-image: radial-gradient(85% 100% at 30% 40%, #000 30%, transparent 88%);
+}
+
+.page-head {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.page-head::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.symbols {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  font-family: "Times New Roman", Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--symbol-ink);
+  user-select: none;
+}
+
+.symbols span {
+  position: absolute;
+  font-size: var(--s, 2.6rem);
+  line-height: 1;
+  transform: rotate(var(--r, 0deg));
+}
+
+.symbols span:nth-child(1) { inset-block-start: 9%; inset-inline-start: 3%; --s: 3rem; --r: -8deg; }
+.symbols span:nth-child(2) { inset-block-start: 12%; inset-inline-start: 44%; --s: 2.2rem; --r: 10deg; }
+.symbols span:nth-child(3) { inset-block-end: 18%; inset-inline-start: 5%; --s: 2.4rem; }
+.symbols span:nth-child(4) { inset-block-start: 7%; inset-inline-end: 5%; --s: 3.2rem; --r: 6deg; }
+.symbols span:nth-child(5) { inset-block-end: 14%; inset-inline-end: 4%; --s: 2.8rem; --r: -6deg; }
+.symbols span:nth-child(6) { inset-block-end: 30%; inset-inline-start: 41%; --s: 2rem; --r: 12deg; }
+.symbols span:nth-child(7) { inset-block-start: 50%; inset-inline-end: 43%; --s: 1.8rem; }
+
+@media (max-width: 899px) {
+  .symbols span:nth-child(n + 5) {
+    display: none;
+  }
+
+  .symbols span {
+    font-size: calc(var(--s, 2.6rem) * 0.75);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Hero: the brand wordmark and the emblem
+   -------------------------------------------------------------------------- */
+
+.hero__title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-1);
+}
+
+/* The emblem's own lettering: heavy, rounded, navy with a gold under-edge. */
+.hero__brand-name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-hero);
+  line-height: 1.4;
+  letter-spacing: 0;
+  color: var(--accent);
+  text-shadow: 0 3px 0 var(--gold-300), 0 14px 28px rgba(26, 48, 73, 0.16);
+}
+
+:root[data-theme="dark"] .hero__brand-name {
+  color: var(--ink);
+  text-shadow: 0 3px 0 rgba(186, 154, 104, 0.55), 0 14px 28px rgba(0, 0, 0, 0.35);
+}
+
+.hero__title-sub {
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+@media (min-width: 900px) {
+  .hero__title {
+    align-items: flex-start;
+  }
+}
+
+.emblem {
+  position: relative;
+  isolation: isolate;
+  width: 168px;
+  aspect-ratio: 1;
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+.emblem::before,
+.emblem::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.emblem::before {
+  inset: -10px;
+  border: 1.5px dashed var(--seal-line);
+  animation: orbit 90s linear infinite;
+}
+
+.emblem::after {
+  inset: 4%;
+  z-index: -1;
+  background: radial-gradient(closest-side, rgba(186, 154, 104, 0.34), transparent);
+  filter: blur(16px);
+}
+
+.emblem__img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 18px 30px rgba(26, 48, 73, 0.28));
+}
+
+:root[data-theme="dark"] .emblem__img {
+  filter: drop-shadow(0 18px 34px rgba(0, 0, 0, 0.6));
+}
+
+/* The caption pill sits under the emblem, not over it: the emblem's own phone
+   number runs along its lower rim and must stay readable. */
+.hero__brand .seal__caption {
+  position: static;
+  display: flex;
+  margin-block-start: var(--sp-4);
+  margin-inline: auto;
+}
+
+@media (min-width: 560px) and (max-width: 899px) {
+  .emblem {
+    width: 220px;
+  }
+
+  .emblem::before {
+    inset: -14px;
+  }
+}
+
+@media (min-width: 900px) {
+  .emblem {
+    width: clamp(320px, 30vw, 420px);
+  }
+
+  .emblem::before {
+    inset: -22px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Data-dependent blocks. The build marks them hidden or visible depending on
+   whether any forms are published yet, and the app does the same at runtime.
+   -------------------------------------------------------------------------- */
+
+.hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--sp-2);
+}
+
+@media (min-width: 900px) {
+  .hero__cta {
+    justify-content: flex-start;
+  }
+}
+
+.soon-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-block-end: var(--sp-3);
+  padding: 4px 12px;
+  border-radius: var(--r-full);
+  background: var(--gold-soft);
+  border: 1px solid color-mix(in srgb, var(--gold-500) 40%, transparent);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--gold-ink);
+}
+
+.soon-badge::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--clay-500);
+  box-shadow: 0 0 0 3px rgba(197, 122, 67, 0.2);
+  animation: pulse 2.4s var(--ease) infinite;
+}
+
+@keyframes pulse {
+  50% {
+    box-shadow: 0 0 0 6px rgba(197, 122, 67, 0);
+  }
+}
+
+.state--soon {
+  background: linear-gradient(180deg, var(--surface), var(--surface-2));
+  border-style: solid;
+  border-color: color-mix(in srgb, var(--gold-500) 35%, var(--border));
+  box-shadow: var(--shadow-2);
+}
+
+.state__emblem {
+  width: 112px;
+  height: 112px;
+  filter: drop-shadow(0 10px 20px rgba(26, 48, 73, 0.22));
+}
+
+.state--soon .verse {
+  margin-block: var(--sp-1);
+}
+
+/* --------------------------------------------------------------------------
+   Install as an app — shown only where the browser can actually do it
+   -------------------------------------------------------------------------- */
+
+.install-hint {
+  position: fixed;
+  inset-inline: var(--gutter);
+  inset-block-end: calc(var(--sp-5) + env(safe-area-inset-bottom));
+  z-index: 160;
+  max-width: 420px;
+  margin-inline: auto;
+  padding: var(--sp-4) var(--sp-5);
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-3);
+  animation: slide-up var(--dur-slow) var(--ease);
+}
+
+.install-hint__head {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-block-end: var(--sp-2);
+}
+
+.install-hint__head img {
+  width: 44px;
+  height: 44px;
+}
+
+.install-hint__title {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.install-hint__close {
+  margin-inline-start: auto;
+}
+
+.install-hint ol {
+  display: grid;
+  gap: 4px;
+  padding-inline-start: var(--sp-5);
+  list-style: decimal;
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+}
+
+.install-cta[hidden] {
+  display: none;
+}
+
+/* Three triggers, one per context: an icon in the header on wide screens, a
+   row in the menu panel on phones, and a link in the footer. */
+.nav__install {
+  display: none;
+}
+
+@media (max-width: 719px) {
+  .header__actions .header__install {
+    display: none;
+  }
+
+  .nav__install:not([hidden]) {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+    margin-block-start: 2px;
+    padding: var(--sp-3);
+    border-radius: var(--r-md);
+    border-block-start: 1px solid var(--border);
+    font-size: var(--fs-md);
+    font-weight: 600;
+    color: var(--accent-tint-ink);
+    text-align: start;
+  }
+
+  .nav__install:hover {
+    background: var(--surface-sunken);
+  }
+}
+
+.footer__install {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding-block: var(--sp-1);
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+  text-underline-offset: 3px;
+}
+
+.footer__install:hover {
+  color: var(--ink);
+}
+
+.footer__install .icon {
+  width: 18px;
+  height: 18px;
+  color: var(--gold);
+}
+
+/* --------------------------------------------------------------------------
+   Footer verse
+   -------------------------------------------------------------------------- */
+
+/* When the page ends on a full-bleed band, the footer meets it directly
+   instead of leaving a strip of page colour between the two. */
+main:has(> .teacher:last-child) + .site-footer {
+  margin-block-start: 0;
+}
+
+.footer__verse {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--verse-bg);
+  border-radius: var(--r-lg);
+  color: var(--verse-ink);
+  text-align: center;
+}
+
+.footer__verse .verse {
+  margin: 0;
+  font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.35rem);
+  line-height: 1.7;
+}
+
+.footer__verse .orn,
+.footer__verse .verse__bracket {
+  color: var(--gold-400);
+}
+
+@media (max-width: 420px) {
+  .footer__verse .orn {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Credentials: the certification gets the gold treatment
+   -------------------------------------------------------------------------- */
+
+.credential--gold {
+  background: linear-gradient(160deg, var(--gold-soft), var(--surface) 70%);
+  border-color: color-mix(in srgb, var(--gold-500) 40%, var(--border));
+}
+
+.credential--gold .credential__icon {
+  background: var(--gold-500);
+  color: #fff;
+}
+
+:root[data-theme="dark"] .credential--gold .credential__icon {
+  color: var(--navy-900);
+}
+
+/* The photograph fills the arch edge to edge, whatever its own proportions,
+   so the navy stage behind it never shows as a band across the top. */
+.arch__img {
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+}
+
+/* Three cards in a two-column grid: the odd one out takes the full row
+   rather than leaving a hole beside it. */
+@media (max-width: 899px) {
+  .credentials > li:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
+/* The emblem, pinned to the arch's shoulder on the profile page. */
+.portrait__badge {
+  position: absolute;
+  z-index: 4;
+  inset-block-start: 4%;
+  inset-inline-end: -10%;
+  width: 34%;
+  max-width: 120px;
+  height: auto;
+  filter: drop-shadow(0 10px 18px rgba(26, 48, 73, 0.32));
+}
+
+.contact-card__pill {
+  margin-block-start: var(--sp-4);
+}
+
+.contact-card__actions .btn bdi {
+  font-weight: 500;
+  color: var(--ink-3);
+}
+
+/* The banners' own contact pill: navy, gold-rimmed, phone glyph first. */
+.phone-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-3);
+  min-height: 52px;
+  padding: 0 var(--sp-5);
+  background: var(--navy-600);
+  border: 2px solid var(--gold-500);
+  border-radius: var(--r-full);
+  box-shadow: var(--shadow-accent);
+  color: #fff;
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: background-color var(--dur) var(--ease), transform var(--dur-fast) var(--ease);
+}
+
+.phone-pill:hover {
+  background: var(--navy-700);
+}
+
+.phone-pill:active {
+  transform: translateY(1px);
+}
+
+.phone-pill .icon {
+  color: var(--gold-300);
+}
+
+:root[data-theme="dark"] .phone-pill {
+  background: var(--navy-800);
+}
