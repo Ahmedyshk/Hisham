@@ -77,7 +77,8 @@ a second progress bar and a `?key=1` link all appear; delete the file and they a
 ## How it is put together
 
 ```
-index.html              home: hero + verse plaque, search, quick access, forms grid, verse band, the teacher
+index.html              home: hero + verse plaque, search, quick access, forms grid, verse band (+ the
+                        three «روح التيسير في المذاكرة» tips), the teacher
 teacher.html            مستر هشام خليل — profile, credentials, contact, FAQ (Person / ProfilePage / FAQPage)
 about.html              عن المنصة — how to use it, installing it as an app, FAQ
 404.html                fully self-contained (no external CSS/JS/images)

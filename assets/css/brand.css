@@ -154,6 +154,21 @@
   }
 }
 
+/* On the home page the plaque opens the hero: above the emblem on phones,
+   centred across both columns on desktop. */
+.verse-plaque--top {
+  grid-column: 1 / -1;
+  order: -2;
+  justify-self: center;
+  margin: 0;
+}
+
+@media (min-width: 900px) {
+  .hero__inner:has(> .verse-plaque--top) {
+    row-gap: var(--sp-8);
+  }
+}
+
 /* Inside running text (about page): it keeps its pill, at the reading edge. */
 .verse-plaque--prose {
   margin-block: var(--sp-6);
@@ -265,6 +280,121 @@
   font-size: var(--fs-md);
   line-height: var(--lh-snug);
   color: rgba(255, 255, 255, 0.82);
+}
+
+/* Under the verse on the home page: three ways to study in its spirit. Gold
+   on navy like the band itself, so they read as part of the verse, not as
+   another section. */
+.ease-tips {
+  max-width: 1000px;
+  margin: clamp(var(--sp-8), 5vw, var(--sp-12)) auto 0;
+}
+
+.ease-tips__title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-3);
+  margin-block-end: var(--sp-6);
+  font-size: var(--fs-2xl);
+  color: var(--verse-ink);
+}
+
+.ease-tips__title::before,
+.ease-tips__title::after {
+  content: "";
+  flex: none;
+  width: clamp(24px, 6vw, 64px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--verse-line));
+}
+
+.ease-tips__title::after {
+  transform: scaleX(-1);
+}
+
+.ease-tips__list {
+  display: grid;
+  gap: var(--sp-3);
+  grid-template-columns: minmax(0, 1fr);
+  counter-reset: tip;
+}
+
+@media (min-width: 720px) {
+  .ease-tips__list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--sp-4);
+  }
+}
+
+.ease-tip {
+  position: relative;
+  counter-increment: tip;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  column-gap: var(--sp-3);
+  padding: var(--sp-5);
+  text-align: start;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(205, 177, 132, 0.26);
+  border-radius: var(--r-lg);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.ease-tip:hover {
+  border-color: rgba(205, 177, 132, 0.5);
+  transform: translateY(-2px);
+}
+
+/* The tip's number, large and faint in the far corner. */
+.ease-tip::after {
+  content: counter(tip, arabic-indic);
+  position: absolute;
+  inset-block-start: var(--sp-3);
+  inset-inline-end: var(--sp-4);
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+  color: rgba(205, 177, 132, 0.3);
+  pointer-events: none;
+}
+
+.ease-tip__icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(205, 177, 132, 0.12);
+  border: 1px solid var(--verse-line);
+  color: var(--gold-400);
+}
+
+.ease-tip__title {
+  padding-inline-end: var(--sp-8);
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  color: var(--verse-ink);
+}
+
+.ease-tip__text {
+  grid-column: 1 / -1;
+  margin-block-start: var(--sp-3);
+  font-size: var(--fs-md);
+  line-height: var(--lh-normal);
+  color: rgba(255, 255, 255, 0.84);
+}
+
+@media (max-width: 480px) {
+  .ease-tips__title {
+    font-size: var(--fs-xl);
+  }
+
+  .ease-tip {
+    padding: var(--sp-4);
+  }
 }
 
 /* ---- 4. Inline, inside prose and states ------------------------------------- */
@@ -448,6 +578,32 @@
 
   .emblem::before {
     inset: -22px;
+  }
+}
+
+/* Stacked (phones, tablets): the title follows the emblem directly, and one
+   pill under it does the work of two. The emblem's caption — his name and
+   role — already reads in the title and in the byline just below. */
+@media (max-width: 899px) {
+  .hero__brand {
+    padding-block-end: 0;
+  }
+
+  .hero__brand .seal__caption {
+    display: none;
+  }
+
+  .hero__copy {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero__copy > .hero__title {
+    order: -1;
+  }
+
+  .hero__copy > .eyebrow {
+    align-self: center;
   }
 }
 
