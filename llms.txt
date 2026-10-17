@@ -17,12 +17,12 @@
 
 ## موقعه: دفرنة في القدرات والتحصيلي
 
-- عدد الإصدارات: 48 إصدارًا على Google Forms.
-- عدد الأسئلة: 2303 أسئلة موزّعة على 48 إصدارًا، ومعظم الإصدارات 48 سؤالًا.
+- عدد الإصدارات: 80 إصدارًا على Google Forms.
+- عدد الأسئلة: 3839 سؤالًا موزّعة على 80 إصدارًا، ومعظم الإصدارات 48 سؤالًا.
 - لكل سؤال أربعة اختيارات، والإجابة إجبارية.
 - الإصدارات من إعداد المستر ولطلابه: تبدأ صفحة كل إصدار بكلمة مرور تُؤخذ منه، ثم اسم الطالب ورقم جواله.
 - بحث بالاسم أو بالرقم، وتصفية، ومتابعة تقدّم محفوظة على جهاز الطالب.
-- آخر تحديث للبيانات: 2026-10-04
+- آخر تحديث للبيانات: 2026-10-17
 - الموقع لا يتطلّب تسجيل دخول، ويمكن تثبيته على الجوال أو الكمبيوتر كتطبيق.
 
 ## الصفحات
@@ -42,6 +42,6 @@
 Hisham Khalil (مستر هشام خليل) is a trainer for the quantitative section of the Saudi
 General Aptitude Test (Qudurat / GAT) and a certified trainer of the Arab Center for
 Training and Human Development (المركز العربي للتدريب والتنمية البشرية). He publishes his
-study files and practice forms under the name "دفرنة في القدرات والتحصيلي". This site lists 48 of his online practice forms (2303 questions in total), last updated 2026-10-04. Each question is multiple choice with four options and is compulsory; every form opens with a password his students get from him, so the set is his own material for his own students.
+study files and practice forms under the name "دفرنة في القدرات والتحصيلي". This site lists 80 of his online practice forms (3839 questions in total), last updated 2026-10-17. Each question is multiple choice with four options and is compulsory; every form opens with a password his students get from him, so the set is his own material for his own students.
 He is not affiliated with, employed by, or endorsed by Qiyas, the national assessment centre.
 Enquiries: WhatsApp or phone +966 50 814 5231.

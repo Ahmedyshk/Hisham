@@ -212,16 +212,12 @@ function stampHero(meta) {
 
   if (meta.generated) {
     html = fillMarker(html, 'data-stat="updated"', formatDate(meta.generated));
-    html = html.replace(
-      /(<time[^>]*data-stat="updated"[^>]*datetime=")[^"]*(")/,
-      `$1${meta.generated}$2`,
+    // datetime may sit before or after the marker, so rewrite the whole tag.
+    html = html.replace(/<time[^>]*data-stat="updated"[^>]*>/, (tag) =>
+      /datetime="/.test(tag)
+        ? tag.replace(/datetime="[^"]*"/, `datetime="${meta.generated}"`)
+        : tag.replace('<time', `<time datetime="${meta.generated}"`),
     );
-    if (!/datetime="/.test(html.match(/<time[^>]*data-stat="updated"[^>]*>/)?.[0] || '')) {
-      html = html.replace(
-        /<time([^>]*)data-stat="updated"/,
-        `<time$1datetime="${meta.generated}" data-stat="updated"`,
-      );
-    }
   }
 
   if (meta.generated) {
